@@ -14,7 +14,7 @@ distance = 10.0
 [node name="Overworld" type="Node2D"]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_5m1cs")]
-position = Vector2(641, 164)
+position = Vector2(352, 577)
 
 [node name="Platform" type="StaticBody2D" parent="."]
 
