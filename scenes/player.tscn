@@ -52,10 +52,6 @@ script = ExtResource("1_52hof")
 position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_i3gsu")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -217)
-zoom = Vector2(0.75, 0.75)
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0.5, -1)
 scale = Vector2(0.490741, 0.591)

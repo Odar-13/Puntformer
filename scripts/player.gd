@@ -1,20 +1,26 @@
 extends CharacterBody2D
 
-const GRAVITY = 2940
+const GRAVITY = 2940.0
 
 @export var speed = 400.0
-@export var gravity = 0 
+var gravity 
 @export var jump = 800.0
 @export var terminal = 1000
+var grav_jump = -1.0
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
-		if Input.is_action_pressed("jump"):
-			gravity = GRAVITY / 3
+		if Input.is_action_pressed("jump") and velocity.y < 0:
+			gravity = GRAVITY / 3.0
+			grav_jump += 0.1
+		elif grav_jump > 0:
+			gravity = GRAVITY / 3.0
 		else:
 			gravity = GRAVITY
 		velocity.y += gravity * delta
+	if velocity.y == 0 and is_on_floor():
+		grav_jump = -1.0
 			
 	# Terminal Velocity
 	if velocity.y > terminal:
