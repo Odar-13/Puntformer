@@ -5,12 +5,25 @@
 [ext_resource type="Script" path="res://scripts/state_machine/idle.gd" id="2_2fiku"]
 [ext_resource type="Texture2D" uid="uid://b8p1osips23go" path="res://art/playerGrey_walk1.png" id="2_eay33"]
 [ext_resource type="Script" path="res://scripts/player_stats.gd" id="2_enkg0"]
-[ext_resource type="Script" path="res://scripts/state_machine/StateMachine.gd" id="2_u3sao"]
 [ext_resource type="Texture2D" uid="uid://ppwvbjbyq67f" path="res://art/playerGrey_up2.png" id="3_5o3tc"]
 [ext_resource type="Texture2D" uid="uid://cce36y0uk7fk6" path="res://art/playerGrey_walk2.png" id="3_kwk2o"]
 [ext_resource type="Script" path="res://scripts/state_machine/run.gd" id="3_tgtxj"]
 [ext_resource type="Script" path="res://scripts/state_machine/air.gd" id="4_278t5"]
 [ext_resource type="Script" path="res://scripts/state_machine/stagger.gd" id="5_lb5dh"]
+
+[sub_resource type="GDScript" id="GDScript_7fr31"]
+script/source = "extends Node
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5x2g4"]
 animations = [{
@@ -52,10 +65,12 @@ radius = 54.0
 height = 136.0
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 2
 script = ExtResource("1_52hof")
+has_dash = null
 
 [node name="StateMachine" type="Node" parent="."]
-script = ExtResource("2_u3sao")
+script = SubResource("GDScript_7fr31")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("2_2fiku")
