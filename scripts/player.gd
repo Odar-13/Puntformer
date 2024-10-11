@@ -1,63 +1,96 @@
+class_name Player
 extends CharacterBody2D
 
-const GRAVITY = 2940.0
+@export var has_dash = false
 
-@export var speed = 400.0
-var gravity 
-@export var jump = 800.0
-@export var terminal = 1000
-var grav_jump = -1.0
+@export var camZoomMin := 0.5
+@export var camZoomMax := 2.0
+@export var camZoomSpeed := 0.1
 
-func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		if Input.is_action_pressed("jump") and velocity.y < 0:
-			gravity = GRAVITY / 3.0
-			grav_jump += 0.1
-		elif grav_jump > 0:
-			gravity = GRAVITY / 3.0
-		else:
-			gravity = GRAVITY
-		velocity.y += gravity * delta
-	if velocity.y == 0 and is_on_floor():
-		grav_jump = -1.0
-			
-	# Terminal Velocity
-	if velocity.y > terminal:
-		velocity.y = terminal
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = -jump
+@export var speed := 400.0
+@export var gravity := 3500.0
+@export var jump_impulse := 1200.0
+@export var friction := 0.99
+@export var acceleration := 0.1
+@export var boost_speed := 200.0
 
-	#Left and right movement
-	var direction := Input.get_axis("move_left", "move_right")
-	if direction:
-		velocity.x = direction * speed
-		$AnimatedSprite2D.play()
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		$AnimatedSprite2D.stop()
-	
+var last_facing := 1
 
+var knockback := Vector2.ZERO
+var staggerTween
+
+#@onready var sound_jump = $SoundJump
+#@onready var sound_hit = $SoundHit
+
+@onready var fsm := $StateMachine
+
+func _ready() -> void:
+	get_node("PlayerStats").health_depleted.connect(dead)
+	#get_node("PlayerStats").health_changed.connect(health_changed)
+
+func check_facing(new_facing):
+	var dir = sign(new_facing.x)
+	if (dir != 0 && dir != last_facing):
+		last_facing = dir
+		scale.x = -1
+
+func calculate_input_direction() -> Vector2:
+	if !$PlayerStats.input_locked:
+		return Vector2(Input.get_action_strength("move_right") - Input.get_action_strength("move_left"), Input.get_action_strength("down") - Input.get_action_strength("jump")).normalized()
+	return Vector2.ZERO
+
+#func _on_StateMachinge_transition(current_state):
+	#Globals.debugInst.get_node("debugPanel/PState").text = String(current_state)
+
+
+func _physics_process(_delta: float) -> void:
+	#handle_camera()
+	handle_use_actions()
+
+#func handle_camera():
+	#if Input.is_action_just_released("zoomin"):
+		#if Globals.camInst.zoom.x >= camZoomMin:
+			#Globals.camInst.zoom.x -= camZoomSpeed
+			#Globals.camInst.zoom.y -= camZoomSpeed
+		#elif Input.is_action_just_released("zoomout"):
+			#if Globals.camInst.zoom.x <= camZoomMax:
+				#Globals.camInst.zoom.x += camZoomSpeed
+				#Globals.camInst.zoom.y += camZoomSpeed
+
+var current_toggle = null
+
+func set_current_toggle(s):
+	current_toggle = s
+func clear_current_toggle():
+	current_toggle = null
+func handle_use_actions():
+	if Input.is_action_just_released("use"):
+		if current_toggle != null:
+			if current_toggle.get_name() == "Toggle":
+				current_toggle.flip_toggle()
+			elif current_toggle.get_name() == "Prompt":
+				current_toggle.ExecutePrompt()
+			elif current_toggle.get_name == "Portal":
+				current_toggle.Teleport()
+
+func dead():
+	set_process_input(false)
+	set_physics_process(false)
+	#Globals.hudInst.get_node("UI/Panels?GameOverPanel").visible = true
+	#Globals.GamePaused = true
+	get_tree().paused = true
+
+#func health_changes(old_value, new_value):
+	#Globals.hudInst.get_node("HealthPanel/health").text = str($PlayerStats.health)
+
+func take_damage(damage):
+	$PlayerStats.take_damage(damage)
+	$StateMachine.transition_to("Stagger")
 	
-	move_and_slide()
-	
-	if velocity.y != 0 and !is_on_floor():
-		$AnimatedSprite2D.animation = "up"
-		$AnimatedSprite2D.flip_v = velocity.y > 0
-	elif velocity.x != 0:
-		$AnimatedSprite2D.animation = "walk"
-		$AnimatedSprite2D.flip_v = false
-		$AnimatedSprite2D.flip_h = velocity.x < 0
-	
-	if is_on_floor():
-		$AnimatedSprite2D.flip_v = false
-	
-	#print(velocity)
-		
-		
-	
-		
-	
-		
-	
+	$AnimateSprite2D/SpriteDmg.visible = true
+	$AnimatedSprite2D/SpriteDmg/Timer.start()
+	#sound_hit.play()
+
+func _on_Timer_timeout():
+	$AnimatedSprite2D/SpriteDmg.visible=false
+	pass
