@@ -47,9 +47,5 @@ mesh = SubResource("QuadMesh_d8a70")
 position = Vector2(1426, 321)
 shape = SubResource("RectangleShape2D_7eyt5")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(2307, 128)
-zoom = Vector2(0.25, 0.25)
-
 [node name="Player" parent="." instance=ExtResource("1_5m1cs")]
 position = Vector2(320, 509)

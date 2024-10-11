@@ -53,6 +53,7 @@ height = 136.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_52hof")
+has_dash = true
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_u3sao")

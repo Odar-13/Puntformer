@@ -12,6 +12,7 @@ extends CharacterBody2D
 @export var jump_impulse := 1200.0
 @export var friction := 0.99
 @export var acceleration := 0.1
+@export var boost_speed := 200.0
 
 var last_facing := 1
 
