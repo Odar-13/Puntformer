@@ -1,6 +1,5 @@
 extends PlayerState
 
-
 # Called when the node enters the scene tree for the first time.
 func enter(_msg := {}) -> void:
 	print('ENTER AIR ',player.velocity,_msg)
@@ -13,8 +12,10 @@ func physics_update(delta: float) -> void:
 	player.check_facing(input_direction)
 	
 	var input_direction_x: float = input_direction.x
-	
 	player.get_node("AnimatedSprite2D").play("jump")
+	if player.velocity.y > 0:
+		player.get_node("AnimatedSprite2D").flip_v = true
+
 	
 	var spd = player.speed
 	if player.has_dash && Input.is_action_pressed("dash"):
@@ -28,6 +29,7 @@ func physics_update(delta: float) -> void:
 	player.move_and_slide()
 	
 	if player.is_on_floor():
+		player.get_node("AnimatedSprite2D").flip_v = false
 		if is_equal_approx(player.velocity.x, 0.0):
 			state_machine.transition_to("Idle")
 		else:
