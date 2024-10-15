@@ -26,12 +26,13 @@ func _ready():
 	
 
 	
-	# starting level IMPORTANT TODO We do not have triggers for this yet, uncomment when important Brennan or delete if unneeded
+	# starting level IMPORTANT TODO We do not have triggers for this yet, uncomment when important Brennen or delete if unneeded
 	#Globals.levelInst.init_player_triggers()
 	#Globals.levelInst.start_level()
 
 func _process(delta: float) -> void:
-	handle_pause()
+	if Input.is_action_just_pressed("pause"):
+		handle_pause()
 	
 	#add time to totals
 	alltime+=delta
@@ -41,12 +42,11 @@ func _process(delta: float) -> void:
 	Globals.debugInst.get_node("DebugText").text = str(alltime, "\n", activetime)
 
 func handle_pause():
-	if Input.is_action_just_pressed("pause"):
-		if Globals.GamePaused:
-			Globals.GamePaused = false
-			Globals.pauseInst.get_node("PausePanel").visible = false
-			get_tree().paused = false
-		else:
-			Globals.GamePaused = true
-			Globals.pauseInst.get_node("PausePanel").visible = true
-			get_tree().paused = true
+	if Globals.GamePaused:
+		Globals.GamePaused = false
+		Globals.pauseInst.get_node("PausePanel").visible = false
+		get_tree().paused = false
+	else:
+		Globals.GamePaused = true
+		Globals.pauseInst.get_node("PausePanel").visible = true
+		get_tree().paused = true
