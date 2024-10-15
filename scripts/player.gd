@@ -39,23 +39,23 @@ func calculate_input_direction() -> Vector2:
 		return Vector2(Input.get_action_strength("move_right") - Input.get_action_strength("move_left"), Input.get_action_strength("down") - Input.get_action_strength("jump")).normalized()
 	return Vector2.ZERO
 
-#func _on_StateMachinge_transition(current_state):
-	#Globals.debugInst.get_node("debugPanel/PState").text = String(current_state)
+func _on_StateMachinge_transition(current_state):
+	Globals.debugInst.get_node("debugPanel/PState").text = String(current_state)
 
 
 func _physics_process(_delta: float) -> void:
-	#handle_camera()
+	handle_camera()
 	handle_use_actions()
 
-#func handle_camera():
-	#if Input.is_action_just_released("zoomin"):
-		#if Globals.camInst.zoom.x >= camZoomMin:
-			#Globals.camInst.zoom.x -= camZoomSpeed
-			#Globals.camInst.zoom.y -= camZoomSpeed
-		#elif Input.is_action_just_released("zoomout"):
-			#if Globals.camInst.zoom.x <= camZoomMax:
-				#Globals.camInst.zoom.x += camZoomSpeed
-				#Globals.camInst.zoom.y += camZoomSpeed
+func handle_camera():
+	if Input.is_action_just_released("zoomin"):
+		if Globals.camInst.zoom.x >= camZoomMin:
+			Globals.camInst.zoom.x -= camZoomSpeed
+			Globals.camInst.zoom.y -= camZoomSpeed
+	elif Input.is_action_just_released("zoomout"):
+		if Globals.camInst.zoom.x <= camZoomMax:
+				Globals.camInst.zoom.x += camZoomSpeed
+				Globals.camInst.zoom.y += camZoomSpeed
 
 var current_toggle = null
 
@@ -76,12 +76,12 @@ func handle_use_actions():
 func dead():
 	set_process_input(false)
 	set_physics_process(false)
-	#Globals.hudInst.get_node("UI/Panels?GameOverPanel").visible = true
-	#Globals.GamePaused = true
+	Globals.hudInst.get_node("UI/Panels?GameOverPanel").visible = true
+	Globals.GamePaused = true
 	get_tree().paused = true
 
-#func health_changes(old_value, new_value):
-	#Globals.hudInst.get_node("HealthPanel/health").text = str($PlayerStats.health)
+func health_changes(old_value, new_value):
+	Globals.hudInst.get_node("HealthPanel/health").text = str($PlayerStats.health)
 
 func take_damage(damage):
 	$PlayerStats.take_damage(damage)

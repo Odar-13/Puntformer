@@ -1,0 +1,100 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmktu3j20o206"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_4y11a"]
+[ext_resource type="PackedScene" uid="uid://c43l6q6u0hpac" path="res://scenes/player.tscn" id="3_jypdj"]
+
+[node name="Game" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_4y11a")
+
+[node name="Player" parent="." instance=ExtResource("3_jypdj")]
+position = Vector2(-6, -86)
+
+[node name="Level" type="Node" parent="."]
+
+[node name="PauseLayer" type="CanvasLayer" parent="Level"]
+layer = 15
+visible = false
+follow_viewport_enabled = true
+
+[node name="PausePanel" type="Panel" parent="Level/PauseLayer"]
+offset_left = -271.0
+offset_top = 14.0
+offset_right = 950.0
+offset_bottom = 825.0
+
+[node name="Label" type="Label" parent="Level/PauseLayer/PausePanel"]
+layout_mode = 0
+offset_left = 450.0
+offset_top = 324.0
+offset_right = 927.0
+offset_bottom = 709.0
+text = "PAUSED"
+
+[node name="HUDLayer" type="CanvasLayer" parent="Level"]
+layer = 15
+follow_viewport_enabled = true
+
+[node name="HealthPanel" type="Panel" parent="Level/HUDLayer"]
+offset_left = -583.0
+offset_top = -529.0
+offset_right = -444.0
+offset_bottom = -483.0
+
+[node name="Label" type="Label" parent="Level/HUDLayer/HealthPanel"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 9.0
+offset_right = 66.0
+offset_bottom = 32.0
+text = "HEALTH"
+
+[node name="Health" type="Label" parent="Level/HUDLayer/HealthPanel"]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 11.0
+offset_right = 132.0
+offset_bottom = 34.0
+text = "5"
+
+[node name="UI" type="Node2D" parent="Level/HUDLayer"]
+
+[node name="Panels" type="Node2D" parent="Level/HUDLayer/UI"]
+
+[node name="GameOverPanel" type="Panel" parent="Level/HUDLayer/UI/Panels"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Debug" type="Node2D" parent="Level/HUDLayer"]
+
+[node name="DebugPanel" type="Panel" parent="Level/HUDLayer/Debug"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 337.0
+offset_top = -528.0
+offset_right = 568.0
+offset_bottom = -485.0
+grow_horizontal = 0
+
+[node name="DebugText" type="Label" parent="Level/HUDLayer/Debug/DebugPanel"]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 1.0
+offset_right = 131.0
+offset_bottom = 24.0
+text = "debug"
+
+[node name="Pstate" type="Label" parent="Level/HUDLayer/Debug/DebugPanel"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 21.0
+offset_right = 55.0
+offset_bottom = 46.0
+text = "pstate"
+
+[node name="LevelLayer" type="CanvasLayer" parent="Level"]
+process_mode = 1
+layer = 10
+follow_viewport_enabled = true

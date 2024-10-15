@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5kv4k3drwcvu"]
+[gd_scene load_steps=5 format=3 uid="uid://b5kv4k3drwcvu"]
 
-[ext_resource type="PackedScene" uid="uid://c43l6q6u0hpac" path="res://scenes/player.tscn" id="1_5m1cs"]
 [ext_resource type="Texture2D" uid="uid://bu6khd3wh3c2" path="res://art/Placeholder-background.jpg" id="2_1gj0m"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_d8a70"]
@@ -12,7 +11,7 @@ size = Vector2(1152, 87)
 normal = Vector2(0.999974, -0.00724619)
 distance = 10.0
 
-[node name="Overworld" type="Node2D"]
+[node name="Overworld" type="TileMapLayer"]
 
 [node name="Platform" type="StaticBody2D" parent="."]
 metadata/_edit_group_ = true
@@ -48,10 +47,11 @@ mesh = SubResource("QuadMesh_d8a70")
 position = Vector2(1426, 321)
 shape = SubResource("RectangleShape2D_7eyt5")
 
-[node name="Player" parent="." instance=ExtResource("1_5m1cs")]
-position = Vector2(320, 509)
+[node name="PlayerSpawn" type="Node2D" parent="."]
+position = Vector2(131, 512)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 show_behind_parent = true
-position = Vector2(907, 353)
+visibility_layer = 16
+position = Vector2(827, 409)
 texture = ExtResource("2_1gj0m")
