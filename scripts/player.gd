@@ -74,12 +74,13 @@ func handle_use_actions():
 
 #TODO Game will crash after taking 5 points of damage because no Game over pannel implemented yet
 func dead():
-	set_process_input(false)
-	set_physics_process(false)
-	Globals.hudInst.get_node("UI/Panels?GameOverPanel").visible = true
-	Globals.GamePaused = true
-	get_tree().paused = true
-
+	#set_process_input(false)
+	#set_physics_process(false)
+	#Globals.hudInst.get_node("UI/Panels?GameOverPanel").visible = true
+	#Globals.GamePaused = truedddddddddddddddddddddddddasdd
+	#get_tree().paused = true
+	get_tree().reload_current_scene()
+	
 func health_changes(old_value, new_value):
 	Globals.hudInst.get_node("HealthPanel/Health").text = str($PlayerStats.health)
 
