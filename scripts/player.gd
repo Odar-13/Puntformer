@@ -26,7 +26,7 @@ var staggerTween
 
 func _ready() -> void:
 	get_node("PlayerStats").health_depleted.connect(dead)
-	#get_node("PlayerStats").health_changed.connect(health_changed)
+	get_node("PlayerStats").health_changed.connect(health_changes)
 
 func check_facing(new_facing):
 	var dir = sign(new_facing.x)
@@ -41,7 +41,6 @@ func calculate_input_direction() -> Vector2:
 
 func _on_StateMachinge_transition(current_state):
 	Globals.debugInst.get_node("debugPanel/PState").text = String(current_state)
-
 
 func _physics_process(_delta: float) -> void:
 	handle_camera()
@@ -73,6 +72,7 @@ func handle_use_actions():
 			elif current_toggle.get_name == "Portal":
 				current_toggle.Teleport()
 
+#TODO Game will crash after taking 5 points of damage because no Game over pannel implemented yet
 func dead():
 	set_process_input(false)
 	set_physics_process(false)
@@ -81,16 +81,22 @@ func dead():
 	get_tree().paused = true
 
 func health_changes(old_value, new_value):
-	Globals.hudInst.get_node("HealthPanel/health").text = str($PlayerStats.health)
+	Globals.hudInst.get_node("HealthPanel/Health").text = str($PlayerStats.health)
 
 func take_damage(damage):
 	$PlayerStats.take_damage(damage)
 	$StateMachine.transition_to("Stagger")
 	
-	$AnimateSprite2D/SpriteDmg.visible = true
+	$AnimatedSprite2D/SpriteDmg.visible = true
 	$AnimatedSprite2D/SpriteDmg/Timer.start()
 	#sound_hit.play()
 
 func _on_Timer_timeout():
 	$AnimatedSprite2D/SpriteDmg.visible=false
 	pass
+
+#Using signals, when the characters hurt box comes into contact with the hit box of the spikes, takes 1 damage
+func _on_hazard_detector_area_entered(body):
+	take_damage(1)
+	
+		

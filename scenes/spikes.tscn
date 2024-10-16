@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnv2lsr3ownd"]
+
+[ext_resource type="Texture2D" uid="uid://1ypltp1dwdgf" path="res://art/16-bit-spike-Sheet.png" id="1_lqrj2"]
+
+[node name="Spikes" type="Node2D"]
+position = Vector2(80, 8)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(168, 92)
+scale = Vector2(4.26667, 4.5)
+texture = ExtResource("1_lqrj2")
+region_enabled = true
+region_rect = Rect2(0, 0, 15.247, 16)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(15, 4.17233e-07)
+scale = Vector2(1, 1)
+texture = ExtResource("1_lqrj2")
+region_enabled = true
+region_rect = Rect2(0, 0, 15.247, 16)
+
+[node name="HazardArea" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HazardArea"]
+polygon = PackedVector2Array(136, 128, 168, 80, 232, 80, 264, 128)

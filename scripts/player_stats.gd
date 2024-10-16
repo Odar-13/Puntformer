@@ -22,7 +22,7 @@ func take_damage(damage) -> void:
 	health -= damage
 	emit_signal("damage_taken")
 	health = max(0, health)
-	emit_signal("health_changed")
+	emit_signal("health_changed", old_health, health)
 	if health == 0:
 		emit_signal("health_depleted")
 

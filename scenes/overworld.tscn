@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5kv4k3drwcvu"]
+[gd_scene load_steps=6 format=3 uid="uid://b5kv4k3drwcvu"]
 
 [ext_resource type="Texture2D" uid="uid://bu6khd3wh3c2" path="res://art/Placeholder-background.jpg" id="2_1gj0m"]
+[ext_resource type="PackedScene" uid="uid://cnv2lsr3ownd" path="res://scenes/spikes.tscn" id="3_p12ov"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_d8a70"]
 
@@ -55,3 +56,6 @@ show_behind_parent = true
 visibility_layer = 16
 position = Vector2(827, 409)
 texture = ExtResource("2_1gj0m")
+
+[node name="Spikes" parent="." instance=ExtResource("3_p12ov")]
+position = Vector2(1329, 260)

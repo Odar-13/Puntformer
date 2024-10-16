@@ -20,10 +20,10 @@ func physics_update(_delta: float) -> void:
 	player.knockback = staggerVelocity
 	player.move_and_slide()
 	
-	var iframe_time = player.get_node("AnimatedSprite2D/SpriteDMG/Timer").wait_time
+	var iframe_time = player.get_node("AnimatedSprite2D/SpriteDmg/Timer").wait_time
 	player.get_node("PlayerStats").set_invunerable_for_seconds(iframe_time, true)
 	
 	player.staggerTween = get_tree().create_tween()
-	player.staggerTween.paralell().tween_property(player, "knockback",Vector2.ZERO, iframe_time)
+	player.staggerTween.parallel().tween_property(player, "knockback",Vector2.ZERO, iframe_time)
 	
 	state_machine.transition_to("Air")
