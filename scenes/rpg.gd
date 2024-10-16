@@ -6,7 +6,7 @@ func enter(_msg := {}) -> void:
 	player.velocity = Vector2.ZERO
 	player.get_node("Camera2D").visibility = false
 
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	pass
 	#TODO Code RPG
 	

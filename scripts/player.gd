@@ -91,8 +91,8 @@ func take_damage(damage):
 	$AnimatedSprite2D/SpriteDmg/Timer.start()
 	#sound_hit.play()
 
-func _on_Timer_timeout():
-	$AnimatedSprite2D/SpriteDmg.visible=false
+func _on_timer_timeout():
+	$AnimatedSprite2D/SpriteDmg.visible = false
 	pass
 
 #Using signals, when the characters hurt box comes into contact with the hit box of the spikes, takes 1 damage
