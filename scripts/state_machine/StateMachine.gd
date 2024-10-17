@@ -7,7 +7,7 @@ signal transitioned(state_name)
 @onready var state: State = get_node(initial_state) # current state
 
 func _ready() -> void:
-	await owner.ready	
+	await owner.ready
 	for child in get_children():
 		child.state_machine = self
 	state.enter()

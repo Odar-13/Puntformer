@@ -39,7 +39,7 @@ func _process(delta: float) -> void:
 	if !(Globals.GamePaused):
 		activetime+=delta
 	
-	Globals.debugInst.get_node("DebugText").text = str(alltime, "\n", activetime)
+	Globals.debugInst.get_node("DebugText").text = "Playtime: " + str(alltime) + "\n" + "Activetime:" + str(activetime) + "\n" + "X: " + str(Globals.playerInst.position.x) + "\nY: " + str(Globals.playerInst.position.y) + "\n" 
 
 func handle_pause():
 	if Globals.GamePaused:
