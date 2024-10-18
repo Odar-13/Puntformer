@@ -1,9 +1,10 @@
 extends PlayerState
 
-
 func enter(_msg := {}) -> void:
 	print('ENTER IDLE ',player.velocity,_msg)
 	player.velocity = Vector2.ZERO
+	if player.get_node("AnimatedSprite2D").flip_v == true:
+		player.get_node("AnimatedSprite2D").flip_v = false
 
 func physics_update(_delta: float) -> void:
 	if not player.is_on_floor():

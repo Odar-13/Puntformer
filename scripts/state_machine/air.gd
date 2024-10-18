@@ -18,8 +18,9 @@ func physics_update(delta: float) -> void:
 
 	
 	var spd = player.speed
-	if player.has_dash && Input.is_action_pressed("dash"):
-		spd += player.boost_speed
+	
+	if Input.is_action_pressed("dash") and player.has_dash:
+		state_machine.transition_to("Dashing")
 	
 	player.velocity.x = spd * input_direction_x
 	player.velocity.y += player.gravity * delta

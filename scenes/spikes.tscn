@@ -15,7 +15,6 @@ region_rect = Rect2(0, 0, 15.247, 16)
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
 position = Vector2(15, 4.17233e-07)
-scale = Vector2(1, 1)
 texture = ExtResource("1_lqrj2")
 region_enabled = true
 region_rect = Rect2(0, 0, 15.247, 16)

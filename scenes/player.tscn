@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c43l6q6u0hpac"]
+[gd_scene load_steps=18 format=3 uid="uid://c43l6q6u0hpac"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_52hof"]
 [ext_resource type="Texture2D" uid="uid://b7b8q4bdj67gc" path="res://art/playerGrey_up1.png" id="2_1hgfi"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://scripts/state_machine/air.gd" id="4_278t5"]
 [ext_resource type="Script" path="res://scripts/state_machine/stagger.gd" id="5_lb5dh"]
 [ext_resource type="Script" path="res://scenes/rpg.gd" id="7_ado87"]
+[ext_resource type="Script" path="res://scenes/dashing.gd" id="8_sl8ci"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5x2g4"]
 animations = [{
@@ -79,6 +80,19 @@ script = ExtResource("5_lb5dh")
 [node name="RPG" type="Node" parent="StateMachine"]
 script = ExtResource("7_ado87")
 
+[node name="Dashing" type="Node" parent="StateMachine"]
+script = ExtResource("8_sl8ci")
+
+[node name="DashCooldown" type="Timer" parent="StateMachine/Dashing"]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="DashDuration" type="Timer" parent="StateMachine/Dashing"]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
 [node name="PlayerStats" type="Node" parent="."]
 script = ExtResource("2_enkg0")
 
@@ -109,6 +123,8 @@ position = Vector2(1, 0)
 shape = SubResource("CapsuleShape2D_y7ur6")
 debug_color = Color(0.853488, 0.324045, 0.467902, 0.42)
 
+[connection signal="timeout" from="StateMachine/Dashing/DashCooldown" to="StateMachine/Dashing" method="_on_dash_cooldown_timeout"]
+[connection signal="timeout" from="StateMachine/Dashing/DashDuration" to="StateMachine/Dashing" method="_on_dash_duration_timeout"]
 [connection signal="timeout" from="AnimatedSprite2D/SpriteDmg/Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="HazardDetector" to="." method="_on_hazard_detector_area_entered"]
 [connection signal="body_entered" from="HazardDetector" to="." method="_on_hazard_detector_body_entered"]

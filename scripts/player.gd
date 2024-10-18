@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 @export var has_dash = false
+@export var dash_ready: bool = true
 
 @export var camZoomMin := 0.5
 @export var camZoomMax := 2.0
@@ -12,7 +13,7 @@ extends CharacterBody2D
 @export var jump_impulse := 1200.0
 @export var friction := 0.99
 @export var acceleration := 0.1
-@export var boost_speed := 200.0
+@export var boost_speed := 40.0
 
 var last_facing := 1
 
@@ -39,7 +40,7 @@ func calculate_input_direction() -> Vector2:
 		return Vector2(Input.get_action_strength("move_right") - Input.get_action_strength("move_left"), Input.get_action_strength("down") - Input.get_action_strength("jump")).normalized()
 	return Vector2.ZERO
 
-func _on_StateMachinge_transition(current_state):
+func _on_StateMachine_transition(current_state):
 	Globals.debugInst.get_node("debugPanel/PState").text = String(current_state)
 
 func _physics_process(_delta: float) -> void:
@@ -72,14 +73,12 @@ func handle_use_actions():
 			elif current_toggle.get_name == "Portal":
 				current_toggle.Teleport()
 
-#TODO Game will crash after taking 5 points of damage because no Game over pannel implemented yet
 func dead():
-	#set_process_input(false)
-	#set_physics_process(false)
-	#Globals.hudInst.get_node("UI/Panels?GameOverPanel").visible = true
-	#Globals.GamePaused = truedddddddddddddddddddddddddasdd
-	#get_tree().paused = true
-	get_tree().reload_current_scene()
+	set_process_input(false)
+	set_physics_process(false)
+	Globals.hudInst.get_node("UI/Panels/GameOverPanel").visible = true
+	Globals.GamePaused = true
+	get_tree().paused = true
 	
 func health_changes(old_value, new_value):
 	Globals.hudInst.get_node("HealthPanel/Health").text = str($PlayerStats.health)
@@ -96,8 +95,13 @@ func _on_timer_timeout():
 	$AnimatedSprite2D/SpriteDmg.visible = false
 	pass
 
-#Using signals, when the characters hurt box comes into contact with the hit box of the spikes, takes 1 damage
 func _on_hazard_detector_area_entered(body):
-	take_damage(1)
+	take_damage(5)
 	
-		
+func _on_restart_pressed() -> void:
+	set_process_input(true)
+	set_physics_process(true)
+	Globals.GamePaused = false
+	get_tree().paused = false
+	get_tree().reload_current_scene()
+	

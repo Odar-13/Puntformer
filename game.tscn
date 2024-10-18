@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmktu3j20o206"]
+[gd_scene load_steps=4 format=3 uid="uid://dmktu3j20o206"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_4y11a"]
 [ext_resource type="PackedScene" uid="uid://c43l6q6u0hpac" path="res://scenes/player.tscn" id="3_jypdj"]
+[ext_resource type="FontFile" uid="uid://dh41rvf3aggj0" path="res://art/VCR_OSD_MONO_1.001.ttf" id="3_vq84c"]
 
 [node name="Game" type="Node2D"]
 process_mode = 3
@@ -64,8 +65,41 @@ text = "5"
 
 [node name="GameOverPanel" type="Panel" parent="Level/HUDLayer/UI/Panels"]
 visible = false
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1152.0
+offset_bottom = 640.0
+
+[node name="Rows" type="VBoxContainer" parent="Level/HUDLayer/UI/Panels/GameOverPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = -64.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 250
+
+[node name="GameOver" type="Label" parent="Level/HUDLayer/UI/Panels/GameOverPanel/Rows"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_vq84c")
+theme_override_font_sizes/font_size = 50
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Level/HUDLayer/UI/Panels/GameOverPanel/Rows"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Level/HUDLayer/UI/Panels/GameOverPanel/Rows/CenterContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Restart" type="Button" parent="Level/HUDLayer/UI/Panels/GameOverPanel/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_vq84c")
+theme_override_font_sizes/font_size = 30
+text = "RESTART?"
 
 [node name="Debug" type="Node2D" parent="Level/HUDLayer"]
 top_level = true
@@ -101,3 +135,5 @@ text = "pstate"
 process_mode = 1
 layer = 10
 follow_viewport_enabled = true
+
+[connection signal="pressed" from="Level/HUDLayer/UI/Panels/GameOverPanel/Rows/CenterContainer/VBoxContainer/Restart" to="Player" method="_on_restart_pressed"]
