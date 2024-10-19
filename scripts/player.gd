@@ -44,7 +44,8 @@ func _on_StateMachine_transition(current_state):
 	Globals.debugInst.get_node("debugPanel/PState").text = String(current_state)
 
 func _physics_process(_delta: float) -> void:
-	handle_camera()
+	if $StateMachine.state != get_node("StateMachine/RPG"):
+		handle_camera()
 	handle_use_actions()
 
 func handle_camera():
