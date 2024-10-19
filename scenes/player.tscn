@@ -11,8 +11,8 @@
 [ext_resource type="Script" path="res://scripts/state_machine/run.gd" id="3_tgtxj"]
 [ext_resource type="Script" path="res://scripts/state_machine/air.gd" id="4_278t5"]
 [ext_resource type="Script" path="res://scripts/state_machine/stagger.gd" id="5_lb5dh"]
-[ext_resource type="Script" path="res://scenes/rpg.gd" id="7_ado87"]
-[ext_resource type="Script" path="res://scenes/dashing.gd" id="8_sl8ci"]
+[ext_resource type="Script" path="res://scripts/state_machine/rpg.gd" id="7_ado87"]
+[ext_resource type="Script" path="res://scripts/state_machine/dashing.gd" id="8_sl8ci"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5x2g4"]
 animations = [{
@@ -49,9 +49,8 @@ animations = [{
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_kcaqk"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ytiah"]
-radius = 54.0
-height = 128.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5sf8e"]
+size = Vector2(111, 139)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y7ur6"]
 radius = 55.0
@@ -114,7 +113,8 @@ texture = SubResource("PlaceholderTexture2D_kcaqk")
 [node name="Timer" type="Timer" parent="AnimatedSprite2D/SpriteDmg"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_ytiah")
+position = Vector2(0.5, -2.5)
+shape = SubResource("RectangleShape2D_5sf8e")
 
 [node name="HazardDetector" type="Area2D" parent="."]
 

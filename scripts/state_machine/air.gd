@@ -13,6 +13,7 @@ func physics_update(delta: float) -> void:
 	
 	var input_direction_x: float = input_direction.x
 	player.get_node("AnimatedSprite2D").play("jump")
+	#Later have fall animation
 	if player.velocity.y > 0:
 		player.get_node("AnimatedSprite2D").flip_v = true
 

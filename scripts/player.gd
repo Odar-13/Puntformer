@@ -22,7 +22,7 @@ var staggerTween
 
 #@onready var sound_jump = $SoundJump
 #@onready var sound_hit = $SoundHit
-
+#Initialize finite state machine
 @onready var fsm := $StateMachine
 
 func _ready() -> void:
