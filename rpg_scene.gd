@@ -1,5 +1,8 @@
 extends Node2D
 
+func _ready():
+	pass
+	
 #Unsure what I want yet, so heres some planning
 """
 
