@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqfifkycv7b7r"]
+[gd_scene load_steps=7 format=3 uid="uid://dqfifkycv7b7r"]
 
 [ext_resource type="Texture2D" uid="uid://dkcwjpmkycpx" path="res://art/placeholder rpg.jpg" id="1_gusyn"]
 [ext_resource type="Script" path="res://rpg_scene.gd" id="1_nybo4"]
 [ext_resource type="Script" path="res://turn_order_handler.gd" id="2_8y0kd"]
 [ext_resource type="Script" path="res://area_2d.gd" id="3_1cs0x"]
 [ext_resource type="Script" path="res://battle_handler.gd" id="3_3tdvk"]
+[ext_resource type="PackedScene" uid="uid://bh6b84m6d7yqv" path="res://enemy.tscn" id="6_3oedg"]
 
 [node name="RPGScene" type="Node2D"]
 script = ExtResource("1_nybo4")
@@ -65,3 +66,5 @@ offset_bottom = 40.0
 
 [node name="Enemy Template" type="Area2D" parent="BattleHandler"]
 script = ExtResource("3_1cs0x")
+
+[node name="Enemy" parent="." instance=ExtResource("6_3oedg")]
