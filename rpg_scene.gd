@@ -1,6 +1,11 @@
 extends Node2D
 
+var battle_scene_background = "res://art/Fm1CIcZaYAMv96e.jpg"
+
+
 func _ready():
+	var background = get_node("../Background")
+	background.change_background(battle_scene_background)
 	pass
 	
 #Unsure what I want yet, so heres some planning

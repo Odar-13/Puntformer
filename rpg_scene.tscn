@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dqfifkycv7b7r"]
+[gd_scene load_steps=9 format=3 uid="uid://dqfifkycv7b7r"]
 
 [ext_resource type="Texture2D" uid="uid://dkcwjpmkycpx" path="res://art/placeholder rpg.jpg" id="1_gusyn"]
 [ext_resource type="Script" path="res://rpg_scene.gd" id="1_nybo4"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://player.gd" id="2_epyl3"]
 [ext_resource type="Script" path="res://area_2d.gd" id="3_1cs0x"]
 [ext_resource type="Script" path="res://battle_handler.gd" id="3_3tdvk"]
+[ext_resource type="Script" path="res://background_placeholder.gd" id="4_ufr6f"]
 [ext_resource type="PackedScene" uid="uid://bh6b84m6d7yqv" path="res://enemy.tscn" id="6_3oedg"]
 
 [node name="RPGScene" type="Node2D"]
@@ -14,9 +15,10 @@ script = ExtResource("1_nybo4")
 [node name="Player" type="Node2D" parent="."]
 script = ExtResource("2_epyl3")
 
-[node name="Background Placeholder" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="."]
 position = Vector2(576, 324)
 texture = ExtResource("1_gusyn")
+script = ExtResource("4_ufr6f")
 metadata/_edit_lock_ = true
 
 [node name="BattleHandler" type="Node2D" parent="."]
