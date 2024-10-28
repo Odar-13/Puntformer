@@ -1,3 +1,4 @@
+#General Template for all states, so game does not crash if a state is missing a function it doesn't use
 class_name State
 extends Node
 

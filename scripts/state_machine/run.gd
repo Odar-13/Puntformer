@@ -1,3 +1,7 @@
+#Player Movement State Machine Component
+#Entered when player moves left or moves right on floor
+#Exits after when a movement key is nor onger pressed, or player leaves floor, or player collides with enemy
+#Exits into Air if in left floor, or Idle if no movement pressed, RPG if enemy is touched
 extends PlayerState
 
 var dash_ready: bool = true

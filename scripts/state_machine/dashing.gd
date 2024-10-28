@@ -1,3 +1,9 @@
+#Player Movement State Machine Component
+#Entered when player hits dash key and they have the dash available
+#Exits after DashDuration timer finishes, locking players in a x movement into a boosted single direction, n0 y movement possible, or player collides with enemy
+#Exits into Air if in air,  Run if on a floor, or RPG if enemy is touched
+
+
 extends PlayerState
 
 @onready var dash_cooldown = $DashCooldown

@@ -1,3 +1,4 @@
+#The Base for all Player States, inherits the State file
 class_name PlayerState
 extends State
 

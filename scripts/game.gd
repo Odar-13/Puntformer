@@ -1,3 +1,5 @@
+#General Game Script
+
 extends Node
 
 var alltime = 0
@@ -8,6 +10,7 @@ var scenes : Dictionary = {
 	"Level1": "res://scenes/level1.tscn"
 }
 
+#Sets all globals, Moves player to current level. Begins the game
 func _ready():
 	#globals
 	Globals.gameInst = self
@@ -33,7 +36,7 @@ func _ready():
 	# starting level IMPORTANT TODO We do not have triggers for this yet, uncomment when important Brennen or delete if unneeded
 	#Globals.levelInst.init_player_triggers()
 	#Globals.levelInst.start_level()
-
+#Handles general run of game on a very high level (pausing, Debug)
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		handle_pause()
@@ -44,7 +47,7 @@ func _process(delta: float) -> void:
 		activetime+=delta
 	
 	Globals.debugInst.get_node("DebugText").text = "Playtime: " + str(alltime) + "\n" + "Activetime:" + str(activetime) + "\n" + "X: " + str(Globals.playerInst.position.x) + "\nY: " + str(Globals.playerInst.position.y) + "\n" 
-
+#Pauses game, or unpauses game
 func handle_pause():
 	if Globals.GamePaused:
 		Globals.GamePaused = false

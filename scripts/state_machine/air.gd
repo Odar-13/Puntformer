@@ -1,12 +1,17 @@
+#Player Movement State Machine Component
+#Entered when player leaves the ground
+#Exits when player touches ground,  hits dash key (if they have available dash), or player collides with enemy
+#Exits into Run, or RPG if enemy is touched
 extends PlayerState
 
-# Called when the node enters the scene tree for the first time.
+# Checks if we left floor due to jump or just falling, and if we passed a jump message applies a single frame impulse to simulate a jump
 func enter(_msg := {}) -> void:
 	print('ENTER AIR ',player.velocity,_msg)
 	if _msg.has("do_jump"):
 		player.velocity.y = -player.jump_impulse
 		#player.sound_jump.play
 
+#General Air movement, and checking if we need to leave the state
 func physics_update(delta: float) -> void:
 	var input_direction = player.calculate_input_direction()
 	player.check_facing(input_direction)
