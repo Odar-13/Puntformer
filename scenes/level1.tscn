@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv5rx5js4xq7h"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_d8a70"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7eyt5"]
+size = Vector2(1152, 87)
+
+[node name="Level" type="TileMapLayer"]
+
+[node name="Platform" type="StaticBody2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Platform"]
+self_modulate = Color(0.21774, 0.227478, 0.205919, 1)
+position = Vector2(574.469, 621.875)
+scale = Vector2(1153.06, 86.25)
+mesh = SubResource("QuadMesh_d8a70")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+position = Vector2(577, 620)
+shape = SubResource("RectangleShape2D_7eyt5")
+
+[node name="PlayerSpawn" type="Node2D" parent="."]
+position = Vector2(297, 396)

@@ -3,6 +3,10 @@ extends Node
 var alltime = 0
 var activetime = 0
 var SceneLevel=preload("res://scenes/overworld.tscn")
+var scenes : Dictionary = {
+	"Overworld" : "res://scenes/overworld.tscn",
+	"Level1": "res://scenes/level1.tscn"
+}
 
 func _ready():
 	#globals
@@ -50,3 +54,16 @@ func handle_pause():
 		Globals.GamePaused = true
 		Globals.pauseInst.get_node("PausePanel").visible = true
 		get_tree().paused = true
+		
+func transition_to_scene(level : String):
+	$Level/LevelLayer.remove_child(Globals.playerInst)
+	$Level/LevelLayer.remove_child(Globals.levelInst)
+	var scene_path = scenes.get(level)
+	if scene_path != null:
+		await get_tree().create_timer(1.0)
+		Globals.levelInst = load(scene_path).instantiate()
+		$Level/LevelLayer.add_child(Globals.levelInst)
+		Globals.playerInst.position = (Globals.levelInst.get_node("PlayerSpawn").position)
+		$Level/LevelLayer.add_child(Globals.playerInst)
+
+		
