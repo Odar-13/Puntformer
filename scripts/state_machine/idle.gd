@@ -1,3 +1,7 @@
+#Player Movement State Machine Component
+#Entered when player is not pressing anything and is on the ground, or player collides with enemy
+#Exits when any movement button is pressed, into Air if jump, Run if left or right (Currently cannot dash from idle), RPG if enemy is touched
+
 extends PlayerState
 
 func enter(_msg := {}) -> void:

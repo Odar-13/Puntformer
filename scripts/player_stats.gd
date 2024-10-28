@@ -1,3 +1,4 @@
+#A file storing player stats
 extends Node
 class_name PlayerStats
 

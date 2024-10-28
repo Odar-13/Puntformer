@@ -1,3 +1,4 @@
+#Decrepit stagger state
 extends PlayerState
 
 

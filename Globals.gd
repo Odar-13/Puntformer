@@ -1,3 +1,4 @@
+#A file that stores any variables that need to be global. Set all values to null or true/false. Initialize in game.gd
 extends Node
 
 var gameInst = null
