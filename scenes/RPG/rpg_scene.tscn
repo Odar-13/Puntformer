@@ -4,10 +4,10 @@
 [ext_resource type="Script" path="res://scripts/RPG/rpg_scene.gd" id="1_nybo4"]
 [ext_resource type="Script" path="res://scripts/RPG/turn_order_handler.gd" id="2_8y0kd"]
 [ext_resource type="Script" path="res://scripts/RPG/player.gd" id="2_epyl3"]
-[ext_resource type="Script" path="res://scripts/RPG/area_2d.gd" id="3_1cs0x"]
 [ext_resource type="Script" path="res://scripts/RPG/battle_handler.gd" id="3_3tdvk"]
 [ext_resource type="Script" path="res://scripts/RPG/background_placeholder.gd" id="4_ufr6f"]
 [ext_resource type="PackedScene" uid="uid://bh6b84m6d7yqv" path="res://scenes/RPG/enemy.tscn" id="6_3oedg"]
+[ext_resource type="Texture2D" uid="uid://3itrqrpe8ko3" path="res://art/gloombruh.png" id="8_0ghnl"]
 
 [node name="RPGScene" type="Node2D"]
 script = ExtResource("1_nybo4")
@@ -24,41 +24,42 @@ metadata/_edit_lock_ = true
 [node name="BattleHandler" type="Node2D" parent="."]
 script = ExtResource("3_3tdvk")
 
-[node name="PlayerSide" type="Node2D" parent="BattleHandler"]
+[node name="2D Markers" type="Node2D" parent="BattleHandler"]
 
-[node name="PlayerSpawn" type="Marker2D" parent="BattleHandler/PlayerSide"]
+[node name="PlayerSpawn" type="Marker2D" parent="BattleHandler/2D Markers"]
 position = Vector2(276, 438)
 
-[node name="EnemySpawns" type="Node2D" parent="BattleHandler"]
+[node name="EnemyAttack" type="Marker2D" parent="BattleHandler/2D Markers"]
+position = Vector2(694, 438)
 
-[node name="1Enemy1Spawn" type="Marker2D" parent="BattleHandler/EnemySpawns"]
+[node name="1Enemy1Spawn" type="Marker2D" parent="BattleHandler/2D Markers"]
 position = Vector2(855, 438)
 
-[node name="2Enemy1Spawn" type="Marker2D" parent="BattleHandler/EnemySpawns"]
+[node name="2Enemy1Spawn" type="Marker2D" parent="BattleHandler/2D Markers"]
 position = Vector2(801, 399)
 
-[node name="2Enemy2Spawn" type="Marker2D" parent="BattleHandler/EnemySpawns"]
+[node name="2Enemy2Spawn" type="Marker2D" parent="BattleHandler/2D Markers"]
 position = Vector2(881, 473)
 
-[node name="3Enemy1Spawn" type="Marker2D" parent="BattleHandler/EnemySpawns"]
+[node name="3Enemy1Spawn" type="Marker2D" parent="BattleHandler/2D Markers"]
 position = Vector2(881, 391)
 
-[node name="3Enemy2Spawn" type="Marker2D" parent="BattleHandler/EnemySpawns"]
+[node name="3Enemy2Spawn" type="Marker2D" parent="BattleHandler/2D Markers"]
 position = Vector2(789, 450)
 
-[node name="3Enemy3Spawn" type="Marker2D" parent="BattleHandler/EnemySpawns"]
+[node name="3Enemy3Spawn" type="Marker2D" parent="BattleHandler/2D Markers"]
 position = Vector2(866, 498)
 
-[node name="4Enemy1Spawn" type="Marker2D" parent="BattleHandler/EnemySpawns"]
+[node name="4Enemy1Spawn" type="Marker2D" parent="BattleHandler/2D Markers"]
 position = Vector2(824, 426)
 
-[node name="4Enemy2Spawn" type="Marker2D" parent="BattleHandler/EnemySpawns"]
+[node name="4Enemy2Spawn" type="Marker2D" parent="BattleHandler/2D Markers"]
 position = Vector2(919, 423)
 
-[node name="4Enemy3Spawn" type="Marker2D" parent="BattleHandler/EnemySpawns"]
+[node name="4Enemy3Spawn" type="Marker2D" parent="BattleHandler/2D Markers"]
 position = Vector2(785, 500)
 
-[node name="4Enemy4Spawn" type="Marker2D" parent="BattleHandler/EnemySpawns"]
+[node name="4Enemy4Spawn" type="Marker2D" parent="BattleHandler/2D Markers"]
 position = Vector2(897, 499)
 
 [node name="TurnOrderHandler" type="Node" parent="BattleHandler"]
@@ -70,7 +71,10 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Enemy Template" type="Area2D" parent="BattleHandler"]
-script = ExtResource("3_1cs0x")
-
 [node name="Enemy" parent="." instance=ExtResource("6_3oedg")]
+position = Vector2(-34, 142)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+scale = Vector2(0.284, 0.284)
+texture = ExtResource("8_0ghnl")
