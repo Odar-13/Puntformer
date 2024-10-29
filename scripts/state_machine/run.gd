@@ -34,3 +34,5 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to("Air", {do_jump = true})
 	elif is_equal_approx(input_direction_x, 0.0):
 		state_machine.transition_to("Idle")
+	elif player.velocity.y > 0:
+		state_machine.transition_to("Air")
