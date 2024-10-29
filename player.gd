@@ -1,11 +1,11 @@
 extends Node2D
 
-@export var health = 20 # When 0, battle ends. 
-@export var mana = 10 # Affects how many spells can be cast
-@export var attack = 10 # Affects damage dealt
-@export var defense = 10 # Affects damage taken
-@export var speed = 8 # Affects turn order
-@export var moxie = 5 # Affects critical hit chance
+@export var health = 20
+@export var mana = 10
+@export var attack = 10
+@export var defense = 10
+@export var speed = 8
+@export var moxie = 5
 
 # Including the variables above, these might need to be global
 @export var level = 1
@@ -41,7 +41,7 @@ func UseItem(consumable):
 	pass
 
 func Flee():
-	# Flee the battle
+	# Flee the battke
 	pass
 
 func can_level_up():

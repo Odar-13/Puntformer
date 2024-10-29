@@ -1,15 +1,5 @@
 extends Node2D
 
-func _ready():
-	# ACTIONS IN ORDER
-	#TODO: START MUSIC, MAKE SURE TO LOOP
-	#TODO: PLACE PLAYER
-	#TODO: PLACE ENEMIES (IF MULTIPLE)
-	#TODO: DECIDE TURN ORDER
-	
-	
-	pass
-
 # Battle Handler, unsure what I want to go here code wise, just im just gonna write a comment
 """
 

@@ -1,14 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://dmktu3j20o206"]
 
-[ext_resource type="Script" path="res://scripts/game.gd" id="1_7foal"]
-[ext_resource type="PackedScene" uid="uid://c43l6q6u0hpac" path="res://scenes/player.tscn" id="2_04trh"]
-[ext_resource type="FontFile" uid="uid://dh41rvf3aggj0" path="res://art/VCR_OSD_MONO_1.001.ttf" id="3_r3uhp"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_4y11a"]
+[ext_resource type="PackedScene" uid="uid://c43l6q6u0hpac" path="res://scenes/player.tscn" id="3_jypdj"]
+[ext_resource type="FontFile" uid="uid://dh41rvf3aggj0" path="res://art/VCR_OSD_MONO_1.001.ttf" id="3_vq84c"]
 
 [node name="Game" type="Node2D"]
 process_mode = 3
-script = ExtResource("1_7foal")
+script = ExtResource("1_4y11a")
 
-[node name="Player" parent="." instance=ExtResource("2_04trh")]
+[node name="Player" parent="." instance=ExtResource("3_jypdj")]
 position = Vector2(-6, -86)
 
 [node name="Level" type="Node2D" parent="."]
@@ -86,7 +86,7 @@ theme_override_constants/separation = 250
 
 [node name="GameOver" type="Label" parent="Level/HUDLayer/UI/Panels/GameOverPanel/Rows"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_r3uhp")
+theme_override_fonts/font = ExtResource("3_vq84c")
 theme_override_font_sizes/font_size = 50
 text = "GAME OVER"
 horizontal_alignment = 1
@@ -100,7 +100,7 @@ alignment = 1
 
 [node name="Restart" type="Button" parent="Level/HUDLayer/UI/Panels/GameOverPanel/Rows/CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_r3uhp")
+theme_override_fonts/font = ExtResource("3_vq84c")
 theme_override_font_sizes/font_size = 30
 text = "RESTART?"
 
