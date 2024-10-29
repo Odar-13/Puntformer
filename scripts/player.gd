@@ -81,19 +81,12 @@ func clear_current_toggle():
 func handle_use_actions():
 	if Input.is_action_just_released("use"):
 		if current_toggle != null:
-			if current_toggle == "Toggle":
+			if current_toggle.get_name() == "Toggle":
 				current_toggle.flip_toggle()
-			elif current_toggle == "Prompt":
+			elif current_toggle.get_name() == "Prompt":
 				current_toggle.ExecutePrompt()
-			elif current_toggle == "Portal":
+			elif current_toggle.get_name == "Portal":
 				current_toggle.Teleport()
-			elif current_toggle == "Door":
-				#if body.is_in_group("Player"):
-				#var player = body as CharacterBody2D
-				#player.queue_free()
-				await get_tree().create_timer(1.0).timeout
-				Globals.gameInst.transition_to_scene("Level1")
-				print("scene transition")
 
 #When the players health is depleted, this runs
 func dead():
@@ -122,11 +115,7 @@ func _on_timer_timeout():
 
 #What to do when entering an area
 func _on_hazard_detector_area_entered(body):
-	print(body.name)
-	if body.name == "HazardArea":
-		take_damage(5)
-	elif body.name == "Door2D" :
-		set_current_toggle("Door")
+	take_damage(5)
 
 #Reloads area and unpauses game on restart pressed on game over menu
 func _on_restart_pressed() -> void:
