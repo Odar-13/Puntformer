@@ -17,15 +17,11 @@
 [ext_resource type="Script" path="res://area_2d.gd" id="3_1cs0x"]
 [ext_resource type="Script" path="res://battle_handler.gd" id="3_3tdvk"]
 [ext_resource type="Script" path="res://background_placeholder.gd" id="4_ufr6f"]
-<<<<<<< HEAD:scenes/rpg_scene.tscn
 [ext_resource type="PackedScene" path="res://enemy.tscn" id="6_3oedg"]
 <<<<<<< Updated upstream:rpg_scene.tscn
 =======
 >>>>>>> ffdd8b9e504b0876402b76614c012a6500ee801e:rpg_scene.tscn
 >>>>>>> Stashed changes:scenes/rpg_scene.tscn
-=======
-[ext_resource type="PackedScene" uid="uid://bh6b84m6d7yqv" path="res://enemy.tscn" id="6_3oedg"]
->>>>>>> parent of ffdd8b9 (Merge pull request #2 from Odar-13/door):rpg_scene.tscn
 
 [node name="RPGScene" type="Node2D"]
 script = ExtResource("1_y36ia")
