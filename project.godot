@@ -11,7 +11,15 @@ config_version=5
 [application]
 
 config/name="Capstone"
+<<<<<<< Updated upstream
 run/main_scene="res://game.tscn"
+=======
+<<<<<<< HEAD
+run/main_scene="res://scenes/rpg_scene.tscn"
+=======
+run/main_scene="res://game.tscn"
+>>>>>>> ffdd8b9e504b0876402b76614c012a6500ee801e
+>>>>>>> Stashed changes
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
