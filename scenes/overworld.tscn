@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b5kv4k3drwcvu"]
+[gd_scene load_steps=8 format=3 uid="uid://b5kv4k3drwcvu"]
 
 [ext_resource type="PackedScene" uid="uid://cwm32dyhkgiks" path="res://scenes/door.tscn" id="1_3fjv6"]
 [ext_resource type="Texture2D" uid="uid://bu6khd3wh3c2" path="res://art/Placeholder-background.jpg" id="2_1gj0m"]
 [ext_resource type="PackedScene" uid="uid://cnv2lsr3ownd" path="res://scenes/spikes.tscn" id="3_p12ov"]
+[ext_resource type="PackedScene" uid="uid://d1kq0l35avvkf" path="res://scenes/checkpoint.tscn" id="4_oeuej"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_d8a70"]
 
@@ -65,3 +66,6 @@ position = Vector2(1329, 260)
 [node name="Door" parent="." instance=ExtResource("1_3fjv6")]
 position = Vector2(694, 444)
 destination_tag = "Level1"
+
+[node name="checkpoint" parent="." instance=ExtResource("4_oeuej")]
+position = Vector2(1216, 120)

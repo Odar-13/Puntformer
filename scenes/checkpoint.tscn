@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1kq0l35avvkf"]
+
+[ext_resource type="Script" path="res://scripts/checkpoint.gd" id="1_jmgel"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fsssy"]
+size = Vector2(40, 40)
+
+[sub_resource type="QuadMesh" id="QuadMesh_16m6q"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_2wd7g"]
+
+[node name="checkpoint" type="Node2D"]
+script = ExtResource("1_jmgel")
+metadata/_edit_group_ = true
+
+[node name="checkpointArea" type="Area2D" parent="."]
+scale = Vector2(1.5, 1.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="checkpointArea"]
+position = Vector2(20, -20)
+shape = SubResource("RectangleShape2D_fsssy")
+
+[node name="OffCheckpoint" type="MeshInstance2D" parent="checkpointArea"]
+modulate = Color(0.694118, 0, 0, 1)
+position = Vector2(20, -20)
+scale = Vector2(40, 40)
+mesh = SubResource("QuadMesh_16m6q")
+
+[node name="OnCheckpoint" type="MeshInstance2D" parent="checkpointArea"]
+modulate = Color(0, 0.694118, 0, 1)
+position = Vector2(20, -20)
+scale = Vector2(40, 40)
+mesh = SubResource("QuadMesh_2wd7g")
+
+[connection signal="body_entered" from="checkpointArea" to="." method="_on_checkpoint_area_body_entered"]
