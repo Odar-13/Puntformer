@@ -1,6 +1,8 @@
 extends Node2D
 
-@export var health = 20
+@export var enemy_name = "Default"
+@export var max_health = 20
+@export var health = max_health
 @export var defense = 5
 @export var speed = 5
 @export var xp = 4
@@ -12,7 +14,17 @@ extends Node2D
 @export var item_pool = [consumable_item, gear_item]
 
 
+
 # Attacks assume the enemy is in position to attack. 
+func take_turn():
+	if health <= 0:
+		return # if dead, skip turn
+	
+	var attack_type = randi() % 2
+	if attack_type == 0:
+		Attack1()
+	else:
+		Attack2()
 
 func _take_damage(amount: int):
 	health -= amount
@@ -21,6 +33,7 @@ func _take_damage(amount: int):
 
 func _die():
 	_generate_loot()
+	print(enemy_name + " has died!")
 	queue_free()
 
 func _generate_loot():
