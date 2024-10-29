@@ -17,6 +17,7 @@ extends CharacterBody2D
 @export var acceleration := 0.1
 @export var boost_speed := 40.0
 
+var destination = ""
 var last_facing := 1
 
 var knockback := Vector2.ZERO
@@ -92,7 +93,7 @@ func handle_use_actions():
 				#var player = body as CharacterBody2D
 				#player.queue_free()
 				await get_tree().create_timer(1.0).timeout
-				Globals.gameInst.transition_to_scene("Level1")
+				Globals.gameInst.transition_to_scene(destination)
 				print("scene transition")
 
 #When the players health is depleted, this runs

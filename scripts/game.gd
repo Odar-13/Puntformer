@@ -57,7 +57,8 @@ func handle_pause():
 		Globals.GamePaused = true
 		Globals.pauseInst.get_node("PausePanel").visible = true
 		get_tree().paused = true
-		
+
+#Scene Handler. Scene must be added to scenes dictionary above
 func transition_to_scene(level : String):
 	$Level/LevelLayer.remove_child(Globals.playerInst)
 	$Level/LevelLayer.remove_child(Globals.levelInst)

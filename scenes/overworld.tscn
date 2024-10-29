@@ -64,3 +64,4 @@ position = Vector2(1329, 260)
 
 [node name="Door" parent="." instance=ExtResource("1_3fjv6")]
 position = Vector2(694, 444)
+destination_tag = "Level1"

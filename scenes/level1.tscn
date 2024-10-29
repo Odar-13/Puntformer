@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dv5rx5js4xq7h"]
+[gd_scene load_steps=4 format=3 uid="uid://dv5rx5js4xq7h"]
+
+[ext_resource type="PackedScene" uid="uid://cwm32dyhkgiks" path="res://scenes/door.tscn" id="1_qu44m"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_d8a70"]
 
@@ -22,3 +24,7 @@ shape = SubResource("RectangleShape2D_7eyt5")
 
 [node name="PlayerSpawn" type="Node2D" parent="."]
 position = Vector2(297, 396)
+
+[node name="Door" parent="." instance=ExtResource("1_qu44m")]
+position = Vector2(703, 436)
+destination_tag = "Overworld"
