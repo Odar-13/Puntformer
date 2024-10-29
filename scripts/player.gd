@@ -125,9 +125,13 @@ func _on_timer_timeout():
 func _on_hazard_detector_area_entered(body):
 	print(body.name)
 	if body.name == "HazardArea":
-		take_damage(5)
+		respawn()
 	elif body.name == "Door2D" :
 		set_current_toggle("Door")
+
+#Respawns player
+func respawn():
+	Globals.playerInst.position = Globals.levelInst.get_node("PlayerSpawn").position
 
 #Reloads area and unpauses game on restart pressed on game over menu
 func _on_restart_pressed() -> void:
