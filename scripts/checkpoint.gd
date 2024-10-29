@@ -8,6 +8,6 @@ func _ready() -> void:
 func _on_checkpoint_area_body_entered(body: Node2D) -> void:
 	$checkpointArea/OnCheckpoint.visible = true
 	if body.name == "Player":
-		Globals.levelInst.get_node("PlayerSpawn").position = position
+		Globals.levelInst.get_node("PlayerSpawn").position = self.position
 	
 	
