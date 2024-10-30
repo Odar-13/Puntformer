@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Enemy
+
 enum Enemy_Type {NORMAL, FLYING, SPIKED, FIRE}
 
 @export var enemy_name = "Default"
@@ -13,7 +15,7 @@ enum Enemy_Type {NORMAL, FLYING, SPIKED, FIRE}
 @export var consumable_item = "Algul"
 # TODO: CHANGE TO ACTUAL ITEM
 @export var gear_item = "The one ring"
-@export var item_pool = [consumable_item, gear_item]
+var enemy_type = Enemy_Type.NORMAL
 
 
 func do_turn():
@@ -31,13 +33,14 @@ func do_turn():
 # Attacks assume the enemy is in position to attack. 
 func Attack1():
 	# Conduct attack, play appropriate animation
+	print(enemy_name + " used attack one")
 	pass
 	
 func Attack2():
 	# Conduct attack, play appropriate animation
+	print(enemy_name + " used attack two")
 	pass
 	
-
 
 func _take_damage(amount: int):
 	health -= amount
@@ -52,12 +55,15 @@ func _generate_loot():
 	var chance = (randi() % 100) + 1
 	if chance == 1:
 		# TODO: ADD GEAR LOOT ITEM TO REWARDS POOL
+		print("Got the " + gear_item)
 		pass
 	elif chance <= 21:
 		# TODO: ADD CONSUMABLE ITEM TO REWARDS POOL
+		print("Got a " + consumable_item)
 		pass
 	else:
 		# Shouldnt drop any item
+		print("Got nothing!")
 		pass
 		
 	# TODO: ADD XP AND MONEY TO REWARDS

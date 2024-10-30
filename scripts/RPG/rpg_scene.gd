@@ -3,6 +3,8 @@ extends Node2D
 func _ready():
 	#TODO: ONCE RECEIVE THE DICTIONARY FROM STATE TRANSITION, LOAD BACKGROUND
 	#_set_background(dictionary whatever)
+	
+	$Player.position = $"BattleHandler/2D Markers/PlayerSpawn".position
 	pass
 
 # Give the function the value of the "area" key in the dictionary, sets the appropriate background 
