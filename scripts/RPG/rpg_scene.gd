@@ -33,7 +33,19 @@ func _set_background(area: String):
 # This array will have to be slowly filled out as more enemies are created
 # Given a specific enemy, generates a random array of enemies to fight with 
 func _generate_enemy_array(contacted_enemy: Enemy):
-	pass
+	# Create an empty array, fill with a random group of enemies based on contact. Return array
+	var enemies = []
+	var action = randi() % 3 # choose a random number to determine enemies generated
+	match contacted_enemy.enemy_name:
+		"Default":
+			match action:
+				0:
+					print("Added one enemy!")
+				1:
+					print("Added two enemies!")
+				2:
+					print("Added three enemies!")
+	return enemies
 	
 
 # Given an array of enemies, place them in the world
