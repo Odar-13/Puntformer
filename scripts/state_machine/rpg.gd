@@ -8,7 +8,7 @@ extends PlayerState
 func enter(_msg := {}) -> void:
 	print('ENTER RPG ',_msg)
 	player.velocity = Vector2.ZERO
-	player.get_node("Camera2D").visibility = false
+	player.get_node("Camera2D").enabled = false
 
 func physics_update(_delta: float) -> void:
 	pass

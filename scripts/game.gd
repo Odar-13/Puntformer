@@ -7,8 +7,10 @@ var activetime = 0
 var SceneLevel=preload("res://scenes/overworld.tscn")
 var scenes : Dictionary = {
 	"Overworld" : "res://scenes/overworld.tscn",
-	"Level1": "res://scenes/level1.tscn"
+	"Level1": "res://scenes/level1.tscn",
+	"RPG" : "res://scenes/RPG/rpg_scene.tscn"
 }
+
 
 #Sets all globals, Moves player to current level. Begins the game
 func _ready():
@@ -60,14 +62,15 @@ func handle_pause():
 
 #Scene Handler. Scene must be added to scenes dictionary above
 func transition_to_scene(level : String):
-	$Level/LevelLayer.remove_child(Globals.playerInst)
-	$Level/LevelLayer.remove_child(Globals.levelInst)
+	$Level/LevelLayer.call_deferred("remove_child", Globals.levelInst)
+	$Level/LevelLayer.call_deferred("remove_child", Globals.playerInst)
 	var scene_path = scenes.get(level)
 	if scene_path != null:
 		await get_tree().create_timer(1.0)
 		Globals.levelInst = load(scene_path).instantiate()
 		$Level/LevelLayer.add_child(Globals.levelInst)
-		Globals.playerInst.position = (Globals.levelInst.get_node("PlayerSpawn").position)
-		$Level/LevelLayer.add_child(Globals.playerInst)
-
-		
+		if level == "RPG":
+			Globals.playerInst.position = (Globals.levelInst.get_node("BattleHandler/2D Markers/PlayerSpawn").position)
+		else:
+			Globals.playerInst.position = (Globals.levelInst.get_node("PlayerSpawn").position)
+		$Level/LevelLayer.call_deferred("add_child", Globals.playerInst)

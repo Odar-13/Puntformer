@@ -128,6 +128,9 @@ func _on_hazard_detector_area_entered(body):
 		respawn()
 	elif body.name == "Door2D" :
 		set_current_toggle("Door")
+	elif body.name == "EnemyArea2D1":
+		Globals.gameInst	.transition_to_scene("RPG")
+		fsm.transition_to("RPG")
 
 #Respawns player
 func respawn():

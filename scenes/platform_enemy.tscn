@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctbpiukoxka5o"]
+
+[ext_resource type="Texture2D" uid="uid://3itrqrpe8ko3" path="res://art/gloombruh.png" id="1_ks7oa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3kya8"]
+size = Vector2(7552, 7552)
+
+[node name="PlatformEnemy" type="Node2D"]
+scale = Vector2(0.25, 0.25)
+
+[node name="EnemyArea2D1" type="Area2D" parent="."]
+scale = Vector2(0.25, 0.25)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyArea2D1"]
+position = Vector2(-352, -208)
+scale = Vector2(0.25, 0.25)
+shape = SubResource("RectangleShape2D_3kya8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ks7oa")
