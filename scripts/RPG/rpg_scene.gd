@@ -6,7 +6,9 @@ func _ready():
 	
 	$Player.position = $"BattleHandler/2D Markers/PlayerSpawn".position
 	
-	#_place_enemies(enemies)
+	#TODO: GENERATE ENEMIES ON CONTACT
+	#TODO: PLACE THE ENEMIES IN THE FIELD
+	#_place_enemies(enemies, array)
 	pass
 
 # Give the function the value of the "area" key in the dictionary, sets the appropriate background 
@@ -27,6 +29,12 @@ func _set_background(area: String):
 	else:
 		var battle_scene_background = "res://art/placeholder rpg.jpg"
 		background.change_background(battle_scene_background)
+
+# This array will have to be slowly filled out as more enemies are created
+# Given a specific enemy, generates a random array of enemies to fight with 
+func _generate_enemy_array(contacted_enemy: Enemy):
+	pass
+	
 
 # Given an array of enemies, place them in the world
 func _place_enemies(array_of_enemies: Array):
