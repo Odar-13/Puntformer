@@ -26,6 +26,6 @@ position = Vector2(92, 66)
 scale = Vector2(96, 136)
 mesh = SubResource("QuadMesh_73mtx")
 
-[connection signal="body_entered" from="Door2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Door2D" to="." method="_on_door_2d_body_entered"]
+[connection signal="body_entered" from="Door2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Door2D" to="." method="_on_door_2d_body_exited"]
