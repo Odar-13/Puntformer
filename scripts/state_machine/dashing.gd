@@ -45,7 +45,9 @@ func _on_dash_cooldown_timeout() -> void:
 
 func _on_dash_duration_timeout() -> void:
 	#print("Duration timer stopped")
-	if !player.is_on_floor():
+	if get_parent().state== get_parent().get_node("RPG"):
+		return
+	elif !player.is_on_floor():
 		state_machine.transition_to("Air")
 	else: 
 		state_machine.transition_to("Run")

@@ -140,7 +140,6 @@ metadata/_edit_use_anchors_ = true
 [node name="LevelLayer" type="CanvasLayer" parent="Level"]
 process_mode = 1
 layer = 10
-visible = false
 follow_viewport_enabled = true
 
 [connection signal="pressed" from="Level/HUDLayer/UI/Panels/GameOverPanel/Rows/CenterContainer/VBoxContainer/Restart" to="Player" method="_on_restart_pressed"]
