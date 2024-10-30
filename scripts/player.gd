@@ -92,7 +92,9 @@ func handle_use_actions():
 				#if body.is_in_group("Player"):
 				#var player = body as CharacterBody2D
 				#player.queue_free()
+				get_tree().paused = true
 				await get_tree().create_timer(1.0).timeout
+				get_tree().paused = false
 				Globals.gameInst.transition_to_scene(destination)
 				print("scene transition")
 
