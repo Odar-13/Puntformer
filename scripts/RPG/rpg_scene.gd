@@ -5,6 +5,8 @@ func _ready():
 	#_set_background(dictionary whatever)
 	
 	$Player.position = $"BattleHandler/2D Markers/PlayerSpawn".position
+	
+	#_place_enemies(enemies)
 	pass
 
 # Give the function the value of the "area" key in the dictionary, sets the appropriate background 
@@ -25,6 +27,25 @@ func _set_background(area: String):
 	else:
 		var battle_scene_background = "res://art/placeholder rpg.jpg"
 		background.change_background(battle_scene_background)
+
+# Given an array of enemies, place them in the world
+func _place_enemies(array_of_enemies: Array):
+	if len(array_of_enemies) == 1:
+		array_of_enemies[0].position = $"BattleHandler/2D Markers/1Enemy1Spawn".position
+	elif len(array_of_enemies) == 2:
+		array_of_enemies[0].position = $"BattleHandler/2D Markers/2Enemy1Spawn".position
+		array_of_enemies[1].position = $"BattleHandler/2D Markers/2Enemy2Spawn".position
+	elif len(array_of_enemies) == 3:
+		array_of_enemies[0].position = $"BattleHandler/2D Markers/3Enemy1Spawn".position
+		array_of_enemies[1].position = $"BattleHandler/2D Markers/3Enemy2Spawn".position
+		array_of_enemies[2].position = $"BattleHandler/2D Markers/3Enemy3Spawn".position
+	elif len(array_of_enemies) == 4:
+		array_of_enemies[0].position = $"BattleHandler/2D Markers/4Enemy1Spawn".position
+		array_of_enemies[1].position = $"BattleHandler/2D Markers/4Enemy2Spawn".position
+		array_of_enemies[2].position = $"BattleHandler/2D Markers/4Enemy3Spawn".position
+		array_of_enemies[3].position = $"BattleHandler/2D Markers/4Enemy4Spawn".position
+	else:
+		print("Length of enemy array out of bounds. HOW?")
 
 #Unsure what I want yet, so heres some planning
 """
