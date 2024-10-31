@@ -17,7 +17,6 @@ enum Enemy_Type {NORMAL, FLYING, SPIKED, FIRE}
 @export var gear_item = "The one ring"
 var enemy_type = Enemy_Type.NORMAL
 
-
 func do_turn():
 	# Maybe need to check if enemy is dead?
 	
@@ -41,7 +40,6 @@ func Attack2():
 	print(enemy_name + " used attack two")
 	pass
 	
-
 func _take_damage(amount: int):
 	health -= amount
 	if health <= 0:

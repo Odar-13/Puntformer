@@ -37,7 +37,7 @@ func _generate_enemy_array(contacted_enemy: Enemy):
 	var enemies = []
 	var action = randi() % 3 # choose a random number to determine enemies generated
 	match contacted_enemy.enemy_name:
-		"Default":
+		_:
 			match action:
 				0:
 					print("Added one enemy!")
@@ -46,7 +46,6 @@ func _generate_enemy_array(contacted_enemy: Enemy):
 				2:
 					print("Added three enemies!")
 	return enemies
-	
 
 # Given an array of enemies, place them in the world
 func _place_enemies(array_of_enemies: Array):

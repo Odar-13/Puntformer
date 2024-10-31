@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqfifkycv7b7r"]
+[gd_scene load_steps=9 format=3 uid="uid://dqfifkycv7b7r"]
 
 [ext_resource type="Texture2D" uid="uid://dkcwjpmkycpx" path="res://art/placeholder rpg.jpg" id="1_gusyn"]
 [ext_resource type="Script" path="res://scripts/RPG/rpg_scene.gd" id="1_nybo4"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" path="res://scripts/RPG/background_placeholder.gd" id="4_ufr6f"]
 [ext_resource type="Texture2D" uid="uid://b7b8q4bdj67gc" path="res://art/playerGrey_up1.png" id="5_c7wac"]
 [ext_resource type="PackedScene" uid="uid://bh6b84m6d7yqv" path="res://scenes/RPG/enemy.tscn" id="6_3oedg"]
-[ext_resource type="Texture2D" uid="uid://3itrqrpe8ko3" path="res://art/gloombruh.png" id="8_0ghnl"]
 
 [node name="RPGScene" type="Node2D"]
 script = ExtResource("1_nybo4")
@@ -78,7 +77,3 @@ offset_bottom = 40.0
 [node name="Enemy" parent="." instance=ExtResource("6_3oedg")]
 position = Vector2(-34, 142)
 metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
-scale = Vector2(0.284, 0.284)
-texture = ExtResource("8_0ghnl")

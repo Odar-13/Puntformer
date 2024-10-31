@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://bh6b84m6d7yqv"]
+[gd_scene load_steps=3 format=3 uid="uid://bh6b84m6d7yqv"]
 
 [ext_resource type="Script" path="res://scripts/RPG/enemy.gd" id="1_aki0s"]
+[ext_resource type="Texture2D" uid="uid://3itrqrpe8ko3" path="res://art/gloombruh.png" id="2_23v8v"]
 
 [node name="Enemy" type="Node2D"]
 script = ExtResource("1_aki0s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-170, -154)
+scale = Vector2(0.419, 0.419)
+texture = ExtResource("2_23v8v")
+metadata/_edit_group_ = true
