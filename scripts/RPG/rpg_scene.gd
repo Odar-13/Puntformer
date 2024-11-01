@@ -53,20 +53,33 @@ func _generate_enemy_array(contacted_enemy: PackedScene):
 	var initialized_enemy = contacted_enemy.instantiate()
 	match initialized_enemy.enemy_name:
 		_:
-			var Enemy1 = load("res://scenes/RPG/enemy.tscn")
+			var EnemyTemplate = load("res://scenes/RPG/enemy.tscn")
 			match action:
 				0:
-					enemies.append(Enemy1.instantiate())
+					var Enemy1 = EnemyTemplate.instantiate()
+					add_child(Enemy1)
+					enemies.append(Enemy1)
 					print("Added one enemy!")
 				1:
-					enemies.append(Enemy1.instantiate())
-					enemies.append(Enemy1.instantiate())
+					var Enemy1 = EnemyTemplate.instantiate()
+					var Enemy2 = EnemyTemplate.instantiate()
+					add_child(Enemy1)
+					add_child(Enemy2)
+					enemies.append(Enemy1)
+					enemies.append(Enemy2)
 					print("Added two enemies!")
 				2:
-					enemies.append(Enemy1.instantiate())
-					enemies.append(Enemy1.instantiate())
-					enemies.append(Enemy1.instantiate())
+					var Enemy1 = EnemyTemplate.instantiate()
+					var Enemy2 = EnemyTemplate.instantiate()
+					var Enemy3 = EnemyTemplate.instantiate()
+					add_child(Enemy1)
+					add_child(Enemy2)
+					add_child(Enemy3)
+					enemies.append(Enemy1)
+					enemies.append(Enemy2)
+					enemies.append(Enemy3)
 					print("Added three enemies!")
+	print(enemies)
 	return enemies
 
 # Given an array of enemies, place them in the world
