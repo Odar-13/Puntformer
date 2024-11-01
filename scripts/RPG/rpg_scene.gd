@@ -6,7 +6,11 @@ func _ready():
 	
 	$Player.position = $"BattleHandler/2D Markers/PlayerSpawn".position
 	
+	var temp_enemy = load("res://scenes/RPG/enemy.tscn") as PackedScene
+	
 	#TODO: GENERATE ENEMIES ON CONTACT
+	var battle_enemies = _generate_enemy_array(temp_enemy)
+	_place_enemies(battle_enemies)
 	#TODO: PLACE THE ENEMIES IN THE FIELD
 	#_place_enemies(enemies, array)
 	pass
@@ -32,18 +36,36 @@ func _set_background(area: String):
 
 # This array will have to be slowly filled out as more enemies are created
 # Given a specific enemy, generates a random array of enemies to fight with 
-func _generate_enemy_array(contacted_enemy: Enemy):
+func _generate_enemy_array(contacted_enemy: PackedScene):
 	# Create an empty array, fill with a random group of enemies based on contact. Return array
+	if contacted_enemy == null:
+		print("Enemy is NULL")
+		return
+	
+	if contacted_enemy is not PackedScene:
+		print("Enemy isnt a packed scene")
+		return
+
+	
+	print("Yuh")
 	var enemies = []
 	var action = randi() % 3 # choose a random number to determine enemies generated
-	match contacted_enemy.enemy_name:
+	var initialized_enemy = contacted_enemy.instantiate()
+	match initialized_enemy.enemy_name:
 		_:
+			var Enemy1 = load("res://scenes/RPG/enemy.tscn")
 			match action:
 				0:
+					enemies.append(Enemy1.instantiate())
 					print("Added one enemy!")
 				1:
+					enemies.append(Enemy1.instantiate())
+					enemies.append(Enemy1.instantiate())
 					print("Added two enemies!")
 				2:
+					enemies.append(Enemy1.instantiate())
+					enemies.append(Enemy1.instantiate())
+					enemies.append(Enemy1.instantiate())
 					print("Added three enemies!")
 	return enemies
 

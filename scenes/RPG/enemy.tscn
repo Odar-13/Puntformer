@@ -5,9 +5,8 @@
 
 [node name="Enemy" type="Node2D"]
 script = ExtResource("1_aki0s")
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-170, -154)
 scale = Vector2(0.419, 0.419)
 texture = ExtResource("2_23v8v")
-metadata/_edit_group_ = true

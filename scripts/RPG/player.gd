@@ -13,6 +13,14 @@ extends Node2D
 @export var experience_needed = 100
 @export var money = 0
 
+func do_turn():
+	# Unsure for now
+	pass
+
+func calculate_level_up():
+	# Some kind of math to determine how much xp is needed per level. Like 1.2x of the previous level?
+	pass
+
 func Jump():
 	#TODO: Implement the jump action, including the damage calculation and animation. Timing aswell
 	pass

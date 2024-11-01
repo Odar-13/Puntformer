@@ -75,5 +75,4 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Enemy" parent="." instance=ExtResource("6_3oedg")]
-position = Vector2(-34, 142)
-metadata/_edit_group_ = true
+position = Vector2(-101, 224)
