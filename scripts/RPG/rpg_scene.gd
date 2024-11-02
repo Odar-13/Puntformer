@@ -11,9 +11,6 @@ func _ready():
 	#TODO: GENERATE ENEMIES ON CONTACT
 	var battle_enemies = _generate_enemy_array(temp_enemy)
 	_place_enemies(battle_enemies)
-	#TODO: PLACE THE ENEMIES IN THE FIELD
-	#_place_enemies(enemies, array)
-	pass
 
 # Give the function the value of the "area" key in the dictionary, sets the appropriate background 
 func _set_background(area: String):
@@ -36,6 +33,7 @@ func _set_background(area: String):
 
 # This array will have to be slowly filled out as more enemies are created
 # Given a specific enemy, generates a random array of enemies to fight with 
+# This is just going to have to be a very long function when completed
 func _generate_enemy_array(contacted_enemy: PackedScene):
 	# Create an empty array, fill with a random group of enemies based on contact. Return array
 	if contacted_enemy == null:
@@ -45,9 +43,7 @@ func _generate_enemy_array(contacted_enemy: PackedScene):
 	if contacted_enemy is not PackedScene:
 		print("Enemy isnt a packed scene")
 		return
-
 	
-	print("Yuh")
 	var enemies = []
 	var action = randi() % 3 # choose a random number to determine enemies generated
 	var initialized_enemy = contacted_enemy.instantiate()

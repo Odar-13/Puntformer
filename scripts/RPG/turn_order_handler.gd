@@ -5,17 +5,17 @@ var turn_order:Array[int] = []
 var current_turn_count = 0
 
 # TEMP VARIABLES TO LET LOGIC FLOW
-var player_speed = 10
-var enemy1_speed = 5
-var enemy2_speed = 10
-var enemy3_speed = 15
-
-func _ready():
-	turn_order.append_array([player_speed, enemy1_speed, enemy2_speed, enemy3_speed])
-	print(turn_order)
-	_define_turn_order(turn_order)
-	print(turn_order)
-
+#TODO: COMPARE PLAYER AND ENEMY SPEED
 func _define_turn_order(array):
 	array.sort()
 	array.reverse()
+	
+#TODO: CREATE TURN ORDER ARRAY
+#TODO: POP ARRAY AND LET THE CONSTITUENT ACT
+#TODO: RECEIVE SIGNAL FROM FINISHED ACTION TO POP NEXT ENTITY
+#TODO: WHEN ARRAY EMPTY, REFILL ARRAY
+#TODO: WHEN ARRAY EMPTY, PROPERLY DELETE ENEMIES
+
+	
+func _sort_by_speed(a, b):
+	return a.speed() > b.speed()
