@@ -42,13 +42,9 @@ func add_enemy(enemy_array, enemy_to_add):
 # This is just going to have to be a very long function when completed
 func _generate_enemy_array(contacted_enemy: PackedScene):
 	# Create an empty array, fill with a random group of enemies based on contact. Return array
-	if contacted_enemy == null:
-		print("Enemy is NULL")
-		return
+	if contacted_enemy == null: return
 	
-	if contacted_enemy is not PackedScene:
-		print("Enemy isnt a packed scene")
-		return
+	if contacted_enemy is not PackedScene: return
 	
 	var enemies = []
 	var action = randi() % 3 # choose a random number to determine enemies generated

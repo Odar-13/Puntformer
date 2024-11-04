@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://l722qow8i108"]
+
+[ext_resource type="Script" path="res://scripts/RPG/player_actions.gd" id="1_oyffg"]
+[ext_resource type="Texture2D" uid="uid://dm4js3r360am3" path="res://art/pointer.png" id="2_25eny"]
+
+[node name="Menu" type="VBoxContainer" node_paths=PackedStringArray("pointer")]
+offset_left = 88.0
+offset_top = 333.0
+offset_right = 245.0
+offset_bottom = 464.0
+script = ExtResource("1_oyffg")
+pointer = NodePath("Sprite2D")
+
+[node name="Jump" type="Label" parent="."]
+layout_mode = 2
+text = "Jump"
+
+[node name="Sword" type="Label" parent="."]
+layout_mode = 2
+text = "Sword"
+
+[node name="Magic" type="Label" parent="."]
+layout_mode = 2
+text = "Magic"
+
+[node name="Item" type="Label" parent="."]
+layout_mode = 2
+text = "Items"
+
+[node name="Flee" type="Label" parent="."]
+layout_mode = 2
+text = "Flee"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-43, 15)
+scale = Vector2(0.7, 0.378)
+texture = ExtResource("2_25eny")

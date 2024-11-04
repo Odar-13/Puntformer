@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dqfifkycv7b7r"]
+[gd_scene load_steps=10 format=3 uid="uid://dqfifkycv7b7r"]
 
 [ext_resource type="Texture2D" uid="uid://dkcwjpmkycpx" path="res://art/placeholder rpg.jpg" id="1_gusyn"]
 [ext_resource type="Script" path="res://scripts/RPG/rpg_scene.gd" id="1_nybo4"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/RPG/background_placeholder.gd" id="4_ufr6f"]
 [ext_resource type="Texture2D" uid="uid://b7b8q4bdj67gc" path="res://art/playerGrey_up1.png" id="5_c7wac"]
 [ext_resource type="PackedScene" uid="uid://bh6b84m6d7yqv" path="res://scenes/RPG/enemy.tscn" id="6_3oedg"]
+[ext_resource type="PackedScene" uid="uid://l722qow8i108" path="res://action_menu.tscn" id="6_b3tbw"]
 
 [node name="RPGScene" type="Node2D"]
 script = ExtResource("1_nybo4")
@@ -23,6 +24,8 @@ script = ExtResource("2_epyl3")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
 texture = ExtResource("5_c7wac")
+
+[node name="Menu" parent="Player" instance=ExtResource("6_b3tbw")]
 
 [node name="BattleHandler" type="Node2D" parent="."]
 script = ExtResource("3_3tdvk")
@@ -68,11 +71,5 @@ position = Vector2(897, 499)
 [node name="TurnOrderHandler" type="Node" parent="BattleHandler"]
 script = ExtResource("2_8y0kd")
 
-[node name="UI Elements" type="Control" parent="BattleHandler"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="Enemy" parent="." instance=ExtResource("6_3oedg")]
-position = Vector2(-101, 224)
+position = Vector2(1662, 1174)

@@ -1,5 +1,8 @@
 extends Node2D
 
+signal turn_completed
+
+# Player stats, may need to send these to global at some point
 @export var health = 20
 @export var mana = 10
 @export var attack = 10
@@ -15,7 +18,7 @@ extends Node2D
 
 func do_turn():
 	# Unsure for now
-	pass
+	turn_completed.emit()
 
 func calculate_level_up():
 	# Some kind of math to determine how much xp is needed per level. Like 1.2x of the previous level?
