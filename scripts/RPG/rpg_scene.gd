@@ -8,7 +8,7 @@ func _ready():
 	
 	var temp_enemy = load("res://scenes/RPG/enemy.tscn") as PackedScene
 	
-	#TODO: GENERATE ENEMIES ON CONTACT
+	#TODO: SWAP OUT THE TEMP ENEMY FOR THE KIND OF ENEMY CONTACTED
 	var battle_enemies = _generate_enemy_array(temp_enemy)
 	_place_enemies(battle_enemies)
 
@@ -16,20 +16,26 @@ func _ready():
 func _set_background(area: String):
 	var background = get_node("Background")
 	if area == "dungeon":
-		#TODO: CREATE DUNGEON BACKGROUND
+		#TODO: CREATE DUNGEON BACKGROUND, AND ADD PATH
 		var battle_scene_background = ""
 		background.change_background(battle_scene_background)
 	elif area == "forest":
-		#TODO: CREATE FOREST BACKGROUND
+		#TODO: CREATE FOREST BACKGROUND, AND ADD PATH
 		var battle_scene_background = ""
 		background.change_background(battle_scene_background)
 	elif area == "mountain":
-		#TODO: CREATE MOUNTAIN BACKGROUND
+		#TODO: CREATE MOUNTAIN BACKGROUND, AND ADD PATH
 		var battle_scene_background = ""
 		background.change_background(battle_scene_background)
 	else:
 		var battle_scene_background = "res://art/placeholder rpg.jpg"
 		background.change_background(battle_scene_background)
+
+# Makes the addition of enemies in the _egenrate_enemy_array function alot briefer
+func add_enemy(enemy_array, enemy_to_add):
+	var temp_enemy = enemy_to_add.instantiate()
+	add_child(temp_enemy)
+	enemy_array.append(temp_enemy)
 
 # This array will have to be slowly filled out as more enemies are created
 # Given a specific enemy, generates a random array of enemies to fight with 
@@ -52,28 +58,16 @@ func _generate_enemy_array(contacted_enemy: PackedScene):
 			var EnemyTemplate = load("res://scenes/RPG/enemy.tscn")
 			match action:
 				0:
-					var Enemy1 = EnemyTemplate.instantiate()
-					add_child(Enemy1)
-					enemies.append(Enemy1)
+					add_enemy(enemies, EnemyTemplate)
 					print("Added one enemy!")
 				1:
-					var Enemy1 = EnemyTemplate.instantiate()
-					var Enemy2 = EnemyTemplate.instantiate()
-					add_child(Enemy1)
-					add_child(Enemy2)
-					enemies.append(Enemy1)
-					enemies.append(Enemy2)
+					add_enemy(enemies, EnemyTemplate)
+					add_enemy(enemies, EnemyTemplate)
 					print("Added two enemies!")
 				2:
-					var Enemy1 = EnemyTemplate.instantiate()
-					var Enemy2 = EnemyTemplate.instantiate()
-					var Enemy3 = EnemyTemplate.instantiate()
-					add_child(Enemy1)
-					add_child(Enemy2)
-					add_child(Enemy3)
-					enemies.append(Enemy1)
-					enemies.append(Enemy2)
-					enemies.append(Enemy3)
+					add_enemy(enemies, EnemyTemplate)
+					add_enemy(enemies, EnemyTemplate)
+					add_enemy(enemies, EnemyTemplate)
 					print("Added three enemies!")
 	print(enemies)
 	return enemies
