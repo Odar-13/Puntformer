@@ -69,7 +69,7 @@ func _generate_enemy_array(contacted_enemy: PackedScene):
 					add_enemy(enemies, EnemyTemplate)
 					add_enemy(enemies, EnemyTemplate)
 					print("Added three enemies!")
-	print(enemies)
+	#print(enemies)
 	return enemies
 
 # Given an array of enemies, place them in the world
