@@ -62,3 +62,7 @@ func can_level_up():
 func LevelUp():
 	#TODO: Awards general stat increases, begins stat lottery, then ends battle
 	pass
+
+# Heres where we do the player action
+func _on_menu_actioned(item: Control) -> void:
+	pass # Replace with function body.

@@ -73,3 +73,5 @@ script = ExtResource("2_8y0kd")
 
 [node name="Enemy" parent="." instance=ExtResource("6_3oedg")]
 position = Vector2(1662, 1174)
+
+[connection signal="actioned" from="Player/Menu" to="Player" method="_on_menu_actioned"]
