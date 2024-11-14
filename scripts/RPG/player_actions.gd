@@ -5,6 +5,7 @@ signal actioned(item: Control)
 @export var pointer : Node
 
 func _ready():
+	print("Player actions ran!")
 	get_viewport().gui_focus_changed.connect(_on_focus_changed)
 	configure_focus()
 
