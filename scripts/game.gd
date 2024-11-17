@@ -4,11 +4,12 @@ extends Node
 
 var alltime = 0
 var activetime = 0
-var SceneLevel=preload("res://scenes/overworld.tscn")
+var SceneLevel=preload("res://scenes/Dungeon/Dungeon1.tscn")
 var scenes : Dictionary = {
 	"Overworld" : "res://scenes/overworld.tscn",
 	"Level1": "res://scenes/level1.tscn",
-	"RPG" : "res://scenes/RPG/rpg_scene.tscn"
+	"RPG" : "res://scenes/RPG/rpg_scene.tscn",
+	"Dungeon1" : "res://scenes/Dungeon/Dungeon1.tcsn"
 }
 
 
