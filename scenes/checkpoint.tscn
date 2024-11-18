@@ -1,17 +1,55 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1kq0l35avvkf"]
+[gd_scene load_steps=11 format=3 uid="uid://d1kq0l35avvkf"]
 
 [ext_resource type="Script" path="res://scripts/checkpoint.gd" id="1_jmgel"]
+[ext_resource type="Texture2D" uid="uid://i1fek350xsim" path="res://art/Multi_Platformer_Tileset/Stronghold/Props/Stronghold_WallTorch_Unlit.webp" id="2_nicx6"]
+[ext_resource type="Texture2D" uid="uid://n0s1kwpdxkjj" path="res://art/Multi_Platformer_Tileset/Stronghold/Props/Animated/Stronghold_WallTorch.png" id="3_sdbn8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fsssy"]
 size = Vector2(40, 40)
 
 [sub_resource type="QuadMesh" id="QuadMesh_16m6q"]
 
-[sub_resource type="QuadMesh" id="QuadMesh_2wd7g"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_k05o4"]
+atlas = ExtResource("3_sdbn8")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0j3v3"]
+atlas = ExtResource("3_sdbn8")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xiydx"]
+atlas = ExtResource("3_sdbn8")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4pnvx"]
+atlas = ExtResource("3_sdbn8")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ig6yx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k05o4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0j3v3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xiydx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4pnvx")
+}],
+"loop": true,
+"name": &"Fire",
+"speed": 5.0
+}]
 
 [node name="checkpoint" type="Node2D"]
+position = Vector2(0, 4)
 script = ExtResource("1_jmgel")
 metadata/_edit_group_ = true
+metadata/_edit_horizontal_guides_ = [-38.0]
 
 [node name="checkpointArea" type="Area2D" parent="."]
 scale = Vector2(1.5, 1.5)
@@ -21,15 +59,17 @@ position = Vector2(20, -20)
 shape = SubResource("RectangleShape2D_fsssy")
 
 [node name="OffCheckpoint" type="MeshInstance2D" parent="checkpointArea"]
-modulate = Color(0.694118, 0, 0, 1)
 position = Vector2(20, -20)
+rotation = 3.14159
 scale = Vector2(40, 40)
 mesh = SubResource("QuadMesh_16m6q")
+texture = ExtResource("2_nicx6")
 
-[node name="OnCheckpoint" type="MeshInstance2D" parent="checkpointArea"]
-modulate = Color(0, 0.694118, 0, 1)
-position = Vector2(20, -20)
-scale = Vector2(40, 40)
-mesh = SubResource("QuadMesh_2wd7g")
+[node name="OnCheckpoint" type="AnimatedSprite2D" parent="checkpointArea"]
+position = Vector2(20.3333, -20)
+scale = Vector2(2.45833, 2.5)
+sprite_frames = SubResource("SpriteFrames_ig6yx")
+animation = &"Fire"
+autoplay = "Fire"
 
 [connection signal="body_entered" from="checkpointArea" to="." method="_on_checkpoint_area_body_entered"]
