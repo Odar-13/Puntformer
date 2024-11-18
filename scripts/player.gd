@@ -33,6 +33,7 @@ var staggerTween
 func _ready() -> void:
 	get_node("PlayerStats").health_depleted.connect(dead)
 	get_node("PlayerStats").health_changed.connect(health_changes)
+	$SwordArea/SwordShape2D.disabled = true
 
 #See if we're facing right or left
 func check_facing(new_facing):

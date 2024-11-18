@@ -11,6 +11,9 @@ func enter(_msg := {}) -> void:
 		player.get_node("AnimatedSprite2D").flip_v = false
 
 func physics_update(_delta: float) -> void:
+	if Input.is_action_pressed("attack"):
+		state_machine.transition_to("Attacking")
+		
 	if not player.is_on_floor():
 		state_machine.transition_to("Air")
 		return

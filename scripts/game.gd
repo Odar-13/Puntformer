@@ -8,6 +8,7 @@ var SceneLevel=preload("res://scenes/overworld.tscn")
 var scenes : Dictionary = {
 	"Overworld" : "res://scenes/overworld.tscn",
 	"Level1": "res://scenes/level1.tscn",
+	"Level2": "res://scenes/level2.tscn",
 	"RPG" : "res://scenes/RPG/rpg_scene.tscn"
 }
 
@@ -69,6 +70,7 @@ func transition_to_scene(level : String):
 		await get_tree().create_timer(1.0)
 		Globals.levelInst = load(scene_path).instantiate()
 		$Level/LevelLayer.add_child(Globals.levelInst)
+		$Level/LevelLayer.call_deferred("add_child", Globals.playerInst)
 		if level == "RPG":
 			Globals.playerInst.position = (Globals.levelInst.get_node("BattleHandler/2D Markers/PlayerSpawn").position)
 		else:
