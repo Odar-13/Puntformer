@@ -3,8 +3,4 @@
 [ext_resource type="Script" path="res://scripts/RPG/menu_test.gd" id="1_je2k7"]
 
 [node name="Control2" type="VBoxContainer"]
-offset_left = 219.0
-offset_top = 146.0
-offset_right = 259.0
-offset_bottom = 186.0
 script = ExtResource("1_je2k7")
