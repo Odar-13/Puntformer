@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqfifkycv7b7r"]
+[gd_scene load_steps=11 format=3 uid="uid://dqfifkycv7b7r"]
 
 [ext_resource type="Texture2D" uid="uid://dkcwjpmkycpx" path="res://art/placeholder rpg.jpg" id="1_gusyn"]
 [ext_resource type="Script" path="res://scripts/RPG/rpg_scene.gd" id="1_nybo4"]
@@ -8,7 +8,8 @@
 [ext_resource type="Script" path="res://scripts/RPG/background_placeholder.gd" id="4_ufr6f"]
 [ext_resource type="Texture2D" uid="uid://b7b8q4bdj67gc" path="res://art/playerGrey_up1.png" id="5_c7wac"]
 [ext_resource type="PackedScene" uid="uid://bh6b84m6d7yqv" path="res://scenes/RPG/enemy.tscn" id="6_3oedg"]
-[ext_resource type="PackedScene" uid="uid://l722qow8i108" path="res://action_menu.tscn" id="6_b3tbw"]
+[ext_resource type="PackedScene" uid="uid://l722qow8i108" path="res://scripts/RPG/action_menu.tscn" id="6_b3tbw"]
+[ext_resource type="Script" path="res://scenes/RPG/v_box_container.gd" id="10_5ggrf"]
 
 [node name="RPGScene" type="Node2D"]
 script = ExtResource("1_nybo4")
@@ -73,5 +74,20 @@ script = ExtResource("2_8y0kd")
 
 [node name="Enemy" parent="." instance=ExtResource("6_3oedg")]
 position = Vector2(1662, 1174)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 367.0
+offset_top = 246.0
+offset_right = 610.0
+offset_bottom = 468.0
+script = ExtResource("10_5ggrf")
+button_array = Array[String](["die", "cry", "uhhh"])
 
 [connection signal="actioned" from="Player/Menu" to="Player" method="_on_menu_actioned"]
