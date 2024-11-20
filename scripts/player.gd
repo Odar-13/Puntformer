@@ -23,6 +23,10 @@ var last_facing := 1
 var knockback := Vector2.ZERO
 var staggerTween
 
+var attacking : bool = false
+#disabled for rpg and other instances
+var can_attack : bool = true
+
 #@onready var sound_jump = $SoundJump
 #@onready var sound_hit = $SoundHit
 #Initialize finite state machine
@@ -31,6 +35,7 @@ var staggerTween
 
 #Connecting Signals
 func _ready() -> void:
+	$SwordArea/SwordCollision.disabled = true
 	get_node("PlayerStats").health_depleted.connect(dead)
 	get_node("PlayerStats").health_changed.connect(health_changes)
 
@@ -97,6 +102,8 @@ func handle_use_actions():
 				get_tree().paused = false
 				Globals.gameInst.transition_to_scene(destination)
 				print("scene transition")
+	elif Input.is_action_just_pressed("attack") and can_attack == true:
+		Attack() 
 
 #When the players health is depleted, this runs
 func dead():
@@ -105,6 +112,14 @@ func dead():
 	Globals.hudInst.get_node("UI/Panels/GameOverPanel").visible = true
 	Globals.GamePaused = true
 	get_tree().paused = true
+	
+func Attack():
+	print("Attacking")
+	attacking = true
+	get_node("SwordArea/AnimatedAttack").visible = true
+	get_node("SwordArea/AnimatedAttack").play("attack")
+	$SwordArea/SwordCollision.disabled = false
+	pass
 	
 #When the health changes, update the HealthPanel
 func health_changes(old_value, new_value):
@@ -146,3 +161,16 @@ func _on_restart_pressed() -> void:
 	get_tree().paused = false
 	get_tree().reload_current_scene()
 	
+
+func _on_animated_attack_animation_finished() -> void:
+	attacking = false
+	get_node("SwordArea/AnimatedAttack").visible = false
+	$SwordArea/SwordCollision.disabled = true
+	
+
+func _on_sword_area_area_entered(area: Area2D) -> void:
+	if area.name == "EnemyArea2D1" and attacking == true:
+		$SwordArea/AnimatedAttack.stop()
+		can_attack = false
+		Globals.gameInst	.transition_to_scene("RPG", true)
+		fsm.transition_to("RPG")

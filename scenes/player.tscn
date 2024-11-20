@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c43l6q6u0hpac"]
+[gd_scene load_steps=29 format=3 uid="uid://c43l6q6u0hpac"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_52hof"]
 [ext_resource type="Texture2D" uid="uid://b7b8q4bdj67gc" path="res://art/playerGrey_up1.png" id="2_1hgfi"]
@@ -13,6 +13,15 @@
 [ext_resource type="Script" path="res://scripts/state_machine/stagger.gd" id="5_lb5dh"]
 [ext_resource type="Script" path="res://scripts/state_machine/rpg.gd" id="7_ado87"]
 [ext_resource type="Script" path="res://scripts/state_machine/dashing.gd" id="8_sl8ci"]
+[ext_resource type="Texture2D" uid="uid://66rl158xsc0f" path="res://art/Pixel Art Animations - Slash/VFX 2/Frames/warrior_skill2_frame1.png" id="15_q2fqb"]
+[ext_resource type="Texture2D" uid="uid://w0w75tt6d1go" path="res://art/Pixel Art Animations - Slash/VFX 2/Frames/warrior_skill2_frame2.png" id="16_ak8op"]
+[ext_resource type="Texture2D" uid="uid://brhs7yiy60u8b" path="res://art/Pixel Art Animations - Slash/VFX 2/Frames/warrior_skill2_frame3.png" id="17_bj3dj"]
+[ext_resource type="Texture2D" uid="uid://dnl5c0pepy13a" path="res://art/Pixel Art Animations - Slash/VFX 2/Frames/warrior_skill2_frame4.png" id="18_7tuai"]
+[ext_resource type="Texture2D" uid="uid://i5xbhdvgicxr" path="res://art/Pixel Art Animations - Slash/VFX 2/Frames/warrior_skill2_frame5.png" id="19_ng3nh"]
+[ext_resource type="Texture2D" uid="uid://do1af0vy8vapb" path="res://art/Pixel Art Animations - Slash/VFX 2/Frames/warrior_skill2_frame6.png" id="20_m5jou"]
+[ext_resource type="Texture2D" uid="uid://6mlcvxh3ru8e" path="res://art/Pixel Art Animations - Slash/VFX 2/Frames/warrior_skill2_frame7.png" id="21_wn0e0"]
+[ext_resource type="Texture2D" uid="uid://dhly0gy2owclj" path="res://art/Pixel Art Animations - Slash/VFX 2/Frames/warrior_skill2_frame8.png" id="22_3lbwi"]
+[ext_resource type="Texture2D" uid="uid://ymtekmkdpo08" path="res://art/Pixel Art Animations - Slash/VFX 2/Frames/warrior_skill2_frame9.png" id="23_ywrex"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5x2g4"]
 animations = [{
@@ -55,6 +64,44 @@ size = Vector2(111, 139)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y7ur6"]
 radius = 55.0
 height = 112.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n6jqu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_q2fqb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ak8op")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_bj3dj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_7tuai")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_ng3nh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_m5jou")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_wn0e0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_3lbwi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_ywrex")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_80bxd"]
+size = Vector2(90.8125, 113)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_52hof")
@@ -123,8 +170,26 @@ position = Vector2(1, 0)
 shape = SubResource("CapsuleShape2D_y7ur6")
 debug_color = Color(0.853488, 0.324045, 0.467902, 0.42)
 
+[node name="SwordArea" type="Area2D" parent="."]
+position = Vector2(208, 32)
+
+[node name="AnimatedAttack" type="AnimatedSprite2D" parent="SwordArea"]
+position = Vector2(-80, -32)
+rotation = 0.436332
+scale = Vector2(0.59485, 1.1269)
+sprite_frames = SubResource("SpriteFrames_n6jqu")
+animation = &"attack"
+speed_scale = 6.0
+
+[node name="SwordCollision" type="CollisionShape2D" parent="SwordArea"]
+position = Vector2(-80, -32)
+shape = SubResource("RectangleShape2D_80bxd")
+debug_color = Color(0.796368, 0.421168, 0.124747, 0.42)
+
 [connection signal="timeout" from="StateMachine/Dashing/DashCooldown" to="StateMachine/Dashing" method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="StateMachine/Dashing/DashDuration" to="StateMachine/Dashing" method="_on_dash_duration_timeout"]
 [connection signal="timeout" from="AnimatedSprite2D/SpriteDmg/Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="HazardDetector" to="." method="_on_hazard_detector_area_entered"]
 [connection signal="body_entered" from="HazardDetector" to="." method="_on_hazard_detector_body_entered"]
+[connection signal="area_entered" from="SwordArea" to="." method="_on_sword_area_area_entered"]
+[connection signal="animation_finished" from="SwordArea/AnimatedAttack" to="." method="_on_animated_attack_animation_finished"]

@@ -72,7 +72,7 @@ destination_tag = "Level1"
 position = Vector2(1216, 120)
 
 [node name="PlatformEnemy" parent="." instance=ExtResource("5_moamr")]
-position = Vector2(607, 535)
+position = Vector2(624, 528)
 
 [node name="Door2" parent="." instance=ExtResource("1_3fjv6")]
 position = Vector2(83, 441)

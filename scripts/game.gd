@@ -62,7 +62,7 @@ func handle_pause():
 		get_tree().paused = true
 
 #Scene Handler. Scene must be added to scenes dictionary above
-func transition_to_scene(level : String):
+func transition_to_scene(level : String, advantage : bool = false):
 	$Level/LevelLayer.call_deferred("remove_child", Globals.levelInst)
 	$Level/LevelLayer.call_deferred("remove_child", Globals.playerInst)
 	var scene_path = scenes.get(level)
@@ -71,7 +71,10 @@ func transition_to_scene(level : String):
 		Globals.levelInst = load(scene_path).instantiate()
 		$Level/LevelLayer.add_child(Globals.levelInst)
 		if level == "RPG":
-			Globals.playerInst.position = (Globals.levelInst.get_node("BattleHandler/2D Markers/PlayerSpawn").position)
+			if advantage == true: #ready for advantage but doesn't do anything
+				Globals.playerInst.position = (Globals.levelInst.get_node("BattleHandler/2D Markers/PlayerSpawn").position)
+			else: 
+				Globals.playerInst.position = (Globals.levelInst.get_node("BattleHandler/2D Markers/PlayerSpawn").position)
 		else:
 			Globals.playerInst.position = (Globals.levelInst.get_node("PlayerSpawn").position)
 		$Level/LevelLayer.call_deferred("add_child", Globals.playerInst)
