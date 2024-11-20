@@ -62,18 +62,20 @@ texture = ExtResource("2_1gj0m")
 metadata/_edit_lock_ = true
 
 [node name="Spikes" parent="." instance=ExtResource("3_p12ov")]
-position = Vector2(1329, 260)
+position = Vector2(1672, 256)
 
 [node name="Door" parent="." instance=ExtResource("1_3fjv6")]
-position = Vector2(694, 444)
+position = Vector2(648, 440)
 destination_tag = "Level1"
+door_to = "Door"
 
 [node name="checkpoint" parent="." instance=ExtResource("4_oeuej")]
 position = Vector2(1216, 120)
 
 [node name="PlatformEnemy" parent="." instance=ExtResource("5_moamr")]
-position = Vector2(624, 528)
+position = Vector2(1544, 328)
 
 [node name="Door2" parent="." instance=ExtResource("1_3fjv6")]
 position = Vector2(83, 441)
 destination_tag = "Dungeon1"
+door_to = "Door"

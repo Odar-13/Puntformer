@@ -11,7 +11,7 @@ var scenes : Dictionary = {
 	"RPG" : "res://scenes/RPG/rpg_scene.tscn",
 	"Dungeon1" : "res://scenes/Dungeon/Dungeon1.tscn"
 }
-
+var displacement = Vector2(45,0)
 
 #Sets all globals, Moves player to current level. Begins the game
 func _ready():
@@ -62,7 +62,7 @@ func handle_pause():
 		get_tree().paused = true
 
 #Scene Handler. Scene must be added to scenes dictionary above
-func transition_to_scene(level : String, advantage : bool = false):
+func transition_to_scene(level : String, door_to : String = "", advantage : bool = false):
 	$Level/LevelLayer.call_deferred("remove_child", Globals.levelInst)
 	$Level/LevelLayer.call_deferred("remove_child", Globals.playerInst)
 	var scene_path = scenes.get(level)
@@ -76,5 +76,9 @@ func transition_to_scene(level : String, advantage : bool = false):
 			else: 
 				Globals.playerInst.position = (Globals.levelInst.get_node("BattleHandler/2D Markers/PlayerSpawn").position)
 		else:
-			Globals.playerInst.position = (Globals.levelInst.get_node("PlayerSpawn").position)
+			if door_to != "":
+				Globals.playerInst.position = (Globals.levelInst.get_node(door_to).position) + displacement
+				door_to = ""
+			else:
+				Globals.playerInst.position = (Globals.levelInst.get_node("PlayerSpawn").position)
 		$Level/LevelLayer.call_deferred("add_child", Globals.playerInst)

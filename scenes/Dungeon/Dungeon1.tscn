@@ -3192,3 +3192,4 @@ use_kinematic_bodies = true
 [node name="Door" parent="." instance=ExtResource("3_gqos8")]
 position = Vector2(939, 420)
 destination_tag = "Overworld"
+door_to = "Door2"

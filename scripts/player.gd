@@ -18,6 +18,7 @@ extends CharacterBody2D
 @export var boost_speed := 40.0
 
 var destination = ""
+var door_to = ""
 var last_facing := 1
 
 var knockback := Vector2.ZERO
@@ -101,7 +102,7 @@ func handle_use_actions():
 				get_tree().paused = true
 				await get_tree().create_timer(1.0).timeout
 				get_tree().paused = false
-				Globals.gameInst.transition_to_scene(destination)
+				Globals.gameInst.transition_to_scene(destination, door_to)
 				print("scene transition")
 	elif Input.is_action_just_pressed("attack") and can_attack == true:
 		Attack() 
