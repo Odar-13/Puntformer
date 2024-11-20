@@ -36,6 +36,7 @@ var can_attack : bool = true
 #Connecting Signals
 func _ready() -> void:
 	$SwordArea/SwordCollision.disabled = true
+	get_node("SwordArea/AnimatedAttack").visible = false
 	get_node("PlayerStats").health_depleted.connect(dead)
 	get_node("PlayerStats").health_changed.connect(health_changes)
 
@@ -171,6 +172,8 @@ func _on_animated_attack_animation_finished() -> void:
 func _on_sword_area_area_entered(area: Area2D) -> void:
 	if area.name == "EnemyArea2D1" and attacking == true:
 		$SwordArea/AnimatedAttack.stop()
+		get_node("SwordArea/AnimatedAttack").visible = false
 		can_attack = false
+		attacking = false
 		Globals.gameInst	.transition_to_scene("RPG", true)
 		fsm.transition_to("RPG")

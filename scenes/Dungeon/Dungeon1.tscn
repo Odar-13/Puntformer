@@ -3170,6 +3170,8 @@ sources/1 = SubResource("TileSetAtlasSource_41n2i")
 
 [node name="Dungeon1" type="Node"]
 
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+
 [node name="PlayerSpawn" type="Node2D" parent="."]
 position = Vector2(215, 430)
 scale = Vector2(1e-05, 1e-05)

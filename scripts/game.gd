@@ -9,7 +9,7 @@ var scenes : Dictionary = {
 	"Overworld" : "res://scenes/overworld.tscn",
 	"Level1": "res://scenes/level1.tscn",
 	"RPG" : "res://scenes/RPG/rpg_scene.tscn",
-	"Dungeon1" : "res://scenes/Dungeon/Dungeon1.tcsn"
+	"Dungeon1" : "res://scenes/Dungeon/Dungeon1.tscn"
 }
 
 
