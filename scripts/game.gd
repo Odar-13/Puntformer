@@ -9,7 +9,8 @@ var scenes : Dictionary = {
 	"Overworld" : "res://scenes/overworld.tscn",
 	"Level1": "res://scenes/level1.tscn",
 	"RPG" : "res://scenes/RPG/rpg_scene.tscn",
-	"Dungeon1" : "res://scenes/Dungeon/Dungeon1.tscn"
+	"Dungeon1" : "res://scenes/Dungeon/Dungeon1.tscn",
+	"Dungeon2" : "res://scenes/Dungeon/Dungeon2.tscn"
 }
 var displacement = Vector2(45,0)
 

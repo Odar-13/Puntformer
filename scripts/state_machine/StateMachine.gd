@@ -33,3 +33,6 @@ func transition_to(target_state: String, data: Dictionary = {}) -> void:
 	state.enter(data)
 	emit_signal("transitioned", state.name)
 	Globals.debugInst.get_node("Pstate").text = state.name
+
+func current_state() -> String:
+	return state.name

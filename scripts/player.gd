@@ -28,11 +28,13 @@ var attacking : bool = false
 #disabled for rpg and other instances
 var can_attack : bool = true
 
+@onready var regular_hitbox = $CollisionShape2D
+@onready var slide_hitbox = $SlideCollision
+
 #@onready var sound_jump = $SoundJump
 #@onready var sound_hit = $SoundHit
 #Initialize finite state machine
 @onready var fsm := $StateMachine
-
 
 #Connecting Signals
 func _ready() -> void:
@@ -63,6 +65,8 @@ func _physics_process(_delta: float) -> void:
 	if $StateMachine.state != get_node("StateMachine/RPG"):
 		handle_camera()
 	handle_use_actions()
+	if Input.is_action_just_pressed("attack") and can_attack == true:
+		Attack()
 
 #Allows zoomin and zoomout of camera to a certain minumum and maximum level
 func handle_camera():
@@ -85,7 +89,6 @@ func set_current_toggle(s):
 func clear_current_toggle():
 	current_toggle = null
 
-
 func handle_use_actions():
 	if Input.is_action_just_released("use"):
 		if current_toggle != null:
@@ -96,16 +99,13 @@ func handle_use_actions():
 			elif current_toggle == "Portal":
 				current_toggle.Teleport()
 			elif current_toggle == "Door":
-				#if body.is_in_group("Player"):
-				#var player = body as CharacterBody2D
-				#player.queue_free()
+				if fsm.current_state() == "Slide":
+					fsm.transition_to("Idle")
 				get_tree().paused = true
 				await get_tree().create_timer(1.0).timeout
 				get_tree().paused = false
 				Globals.gameInst.transition_to_scene(destination, door_to)
 				print("scene transition")
-	elif Input.is_action_just_pressed("attack") and can_attack == true:
-		Attack() 
 
 #When the players health is depleted, this runs
 func dead():
@@ -142,6 +142,7 @@ func _on_timer_timeout():
 
 #What to do when entering an area
 func _on_hazard_detector_area_entered(body):
+	print("Something")
 	print(body.name)
 	if body.name == "HazardArea":
 		respawn()
@@ -162,13 +163,11 @@ func _on_restart_pressed() -> void:
 	Globals.GamePaused = false
 	get_tree().paused = false
 	get_tree().reload_current_scene()
-	
 
 func _on_animated_attack_animation_finished() -> void:
 	attacking = false
 	get_node("SwordArea/AnimatedAttack").visible = false
 	$SwordArea/SwordCollision.disabled = true
-	
 
 func _on_sword_area_area_entered(area: Area2D) -> void:
 	if area.name == "EnemyArea2D1" and attacking == true:
@@ -176,5 +175,5 @@ func _on_sword_area_area_entered(area: Area2D) -> void:
 		get_node("SwordArea/AnimatedAttack").visible = false
 		can_attack = false
 		attacking = false
-		Globals.gameInst	.transition_to_scene("RPG", true)
+		Globals.gameInst	.transition_to_scene("RPG")
 		fsm.transition_to("RPG")
