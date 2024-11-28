@@ -17,7 +17,6 @@ func enter(_msg := {}) -> void:
 	get_node("../../SlideArea/SlideHelp").disabled = false
 	get_node("../../SlideArea2/SlideHelp2").disabled = false
 	get_node("../../SlideCollision").disabled = false
-	print(self)
 	print('ENTER SLIDE ',player.velocity,_msg)
 	player.get_node("AnimatedSprite2D").play("slide")
 	perform_slide()
@@ -28,7 +27,6 @@ func enter(_msg := {}) -> void:
 func physics_update(delta: float) -> void:
 	player.velocity.x = slide_speed * constant_input.x
 	player.move_and_slide()
-	print(slide_duration)
 	
 func perform_slide() -> void:
 	slide_ready = false
