@@ -13,7 +13,8 @@ var constant_input = Vector2(0,0)
 
 func enter(_msg := {}) -> void:
 	player.get_node("AnimatedSprite2D").position = Vector2(0, 22)
-	get_node("../../CollisionShape2D").disabled = true
+	player.get_node("CollisionShape2D").scale = Vector2(.25, .25)
+	player.get_node("CollisionShape2D").position = Vector2(0, 22)
 	get_node("../../SlideArea/SlideHelp").disabled = false
 	get_node("../../SlideArea2/SlideHelp2").disabled = false
 	get_node("../../SlideCollision").disabled = false
@@ -42,11 +43,11 @@ func _on_dash_cooldown_timeout() -> void:
 func _on_slide_duration_timeout() -> void:
 	get_node("../../SlideArea/SlideHelp").disabled = true
 	get_node("../../SlideArea2/SlideHelp2").disabled = true
-	player.get_node("CollisionShape2D").disabled = false
 	player.get_node("SlideCollision").disabled = true
-	var hurtbox = get_node("../../HazardDetector/PlayerHurtBox")
-	var shape = hurtbox.shape
 	player.get_node("AnimatedSprite2D").position = player.get_node("AnimatedSprite2D").position - Vector2(0, 22)
+	player.get_node("CollisionShape2D").scale = Vector2(1,1)
+	player.get_node("CollisionShape2D").position = player.get_node("CollisionShape2D").position - Vector2(0,22)
+	
 	print("Slide Duration timer stopped")
 	if get_parent().state== get_parent().get_node("RPG"):
 		return
