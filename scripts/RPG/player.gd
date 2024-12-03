@@ -3,8 +3,10 @@ extends Node2D
 signal turn_completed
 
 # Player stats, may need to send these to global at some point
-@export var health = 20
-@export var mana = 10
+@export var max_health = 20
+var current_health = max_health
+@export var max_mana = 10
+var current_mana = max_mana
 @export var attack = 10
 @export var defense = 10
 @export var speed = 8
