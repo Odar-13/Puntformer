@@ -6,6 +6,7 @@ func _ready():
 	
 	$Player.position = $"BattleHandler/2D Markers/PlayerSpawn".position
 	
+	#TODO: SWAP OUT THE TEMP ENEMY FOR THE KIND OF ENEMY CONTACTED
 	var temp_enemy = load("res://scenes/RPG/enemy.tscn") as PackedScene
 	
 	#TODO: SWAP OUT THE TEMP ENEMY FOR THE KIND OF ENEMY CONTACTED

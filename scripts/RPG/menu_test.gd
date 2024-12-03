@@ -16,6 +16,11 @@ var Actions = [
 
 func _ready() -> void:
 	position.x -= 250
+	display_action_buttons()
+
+# Creates new instances of buttons, good if an action is removed during the fight
+func display_action_buttons():
+	clear_buttons()
 	for action in Actions:
 		if action["enabled"]:
 			var button = Button.new()
@@ -23,6 +28,15 @@ func _ready() -> void:
 			add_child(button)
 			button.connect("pressed", func(): _on_button_pressed(action["text"]))
 
+# Deletes current buttons, helps memory management
+func clear_buttons():
+	for child in get_children():
+		child.queue_free()
 
 func _on_button_pressed(button_text):
 	print("Button '%s' pressed!" % button_text)
+	
+	if button_text == "Jump":
+		print("Should jump.")
+		# Select enemy
+		# Play jump action
